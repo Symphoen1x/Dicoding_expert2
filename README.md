@@ -4,39 +4,45 @@
 
 ## Business Understanding
 - pengenalan/latar belakang
-- riset terkait latar bealakang:
-Putri (2018) dari Youthmanual sebagai perusahaan rintisan Skystar Ventures Tech Incubator Universitas 
-Multimedia Nusantara (UMN), melakukan penelitian selama dua tahun untuk mendalami lebih dari 400.000 
-profil mahasiswa di seluruh Indonesia. Dari hasil penelitian tersebut, ditemukan fakta yang cukup menarik 
-yakni 92% mahasiswa tidak tahu akan menjadi apa kedepannya dan 45% mahasiswa merasa salah mengambil 
-jurusan.
+- riset terkait latar bealakang salah jurusan
+Berdasarkan penelitian dari Youthmanual tentang profil mahasiswa di seluruh Indonesia bahwa hasil penelitian  menunjukan fakta yang cukup menarik, yakni 92% mahasiswa tidak tahu akan menjadi apa kedepannya dan 45% mahasiswa merasa salah mengambil jurusan. Penilitian lain dari Data Indonesia Career Center Network (ICCN) tahun 2017 mengungkapkan demikian bawha lebih dari 71,7% orang bekerja tidak linier dengan pendidikannya dan lebih dari 87% pelajar dan mahasiswa tidak sesuai dengan minatnya ketika mengambil jurusan di dunia pendidikan[]. 
 
-:Putri, N. (2018). Angka siswa yang salah pilih jurusan masih tinggi. 
-http://www.skystarventures.com/youthmanual-angka-siswa-yang-salah-pilih-jurusan-masih-tinggi/
+- Jawaban solusi
+Maka dari itu, harus ada sebuah sistem rekomendasi (recommendation system) yang dapat memberikan saran ataupun rekomendasi laptop berdasarkan ketertarikan dan kebutukan dalam pencarian referensi. Dalam sistem rekomendasi (recommendation system) algoritma yang umum digunakan adalah collaborative filtering (CF) dan content based filtering(CB). Collaborative filtering(CF) terbagi atas dua jenis yaitu user-based CF dan item-based CF. User-based Collaborative Filtering berasumsi bahwa cara yang baik dalam menemukan konten yang dirasa akan disukai oleh konsumen adalah dengan menemukan orang lain dengan ketertarikan yang sama dengan konsumen tersebut, kemudian merekomendasikan hal yang disukai oleh orang lain tersebut kepada konsumen (handrico, 2012). Item-based Collaborative Filtering berasumsi bahwa jika mayoritas pengguna memberi penilaian beberapa item secara serupa, pengguna yang kita targetkan juga akan memberi penilaian terhadap item-item tersebut secara serupa dengan mayoritas pengguna lain (Sarwar, 2001).. Berbeda dengan content-based filtering yang mana tidak seperti collaborative filtering yang menggunakan parameter semacam rating untuk menghasilkan rekomendasi. Melainkan menggunakan deskripsi dari profil pengguna, atau dari deskripsi suatu item untuk menghasilkan suatu rekomendasi (Ricci, 2011).
 
-Hasil survei Educational Psychologist Integrity Development Flexibility (Harahap, 2014) mengatakan 
-bahwa terdapat 87% mahasiswa Indonesia salah jurusan saat kuliah.
-:
+- riset tentnag solusi sistem rekomendasi
+ 
+- riset peminat saintek dan kesimpulan
+Berdasarkan hasil riset dari jurnal RevoU pada tahun 2023 tentang pertumbuhan peminat jurusan saintek dan non-saintek atau Soshum di 10 kampus terbaik Indonesia, ada sebanyak 29 jurusan saintek dan 21 jurusan non-saintek dengan persentase masing-masing 58% dan 42% dengan selisih 16% []. Kondisi ini menunjukan bahwa daya saing dan minat mahasiswa terhadap kedua pilihan jurusan tersebut hampir setara, tetapi peminat saintek sedikit unggul daripeminat non-saintek. Penelitian lain juga memperkuat hasil tersebut bahwa data jumlah peminat mahasiswa jurusan sanitek dan soshum dari tahun 2016-2020 di salah satu universitas yang ada di Indonesia menunjukan perbedaan pada jurusan saintek yang lebih unggul daripada jurusan soshum. Dapat diambil kesimpulan dari kedua riset tersebut bahwa saintek memiliki peminat yang lebih banyak dari pada jurusan soshum. Jika dikaitakn dengan masalah mahasiswa salah jurusan, project ini akan diarahkan pada penggunaan sampel jumlah peminat dari jurusan saintek. Oleh karena itu, sistem rekomendasi yang akan dibuat akan lebih spesifik terhadap peminat jurusan saintek.
 
+[]. Vazrina Putri. "Jurusan Kuliah dengan Pertumbuhan Mahasiswa Terbesar di Indonesia". RevoU. 2023. Tersedia: [tautan](https://journal.revou.co/pertumbuhan-program-studi-2023/). Diakses pada 14 Maret 2024.
 
-Penelitian yang telah 
-dilakukan selalu konsisten menunjukkan bahwa para peserta didik yang telah membuat pilihan jurusan/bidang 
-masa depan yang tepat memiliki kualitas hidup yang lebih baik daripada yang belum memutuskan (Dewi, 
-2017).
-:
-Dewi, R. P. (2017). Hubungan efikasi diri dengan pengambilan keputusan karir pada mahasiswa tingkat akhir 
-fakultas psikologi Univeritas Mercu Buana Yogyakarta. Insight, 19(2), 87–99
+[]. Indonesia Career Center Network. "Hasil penelitian ICCN(indonesia career center network)". ICCN. 2017. Tersedia: [tautan](https://indonesiacareercenter.id/).
 
-Data    statistik    pada    Biro    PusatStatistik  (Badan  Pusat  Statistik  RepublikIndonesia, 2017) menunjukkan data jumlahpengangguran  terbuka  pada  Februari  2017(open     unemployement)    di    tanah     airsebanyak  7,01  juta  jiwa  dimana  sebanyak5,33%   (373.100   jiwa)   adalah   tamatanuniversitas.
-:
-Badan Pusat Statistik. 2017.(https://www.bps.go.id/pressrelease/2018/05/07/1484/februari-2018--tingkat-pengangguran-terbuka--tpt--sebesar-5-13-persen--rata-rata-upah-buruh-per-bulan-sebesar-2-65-juta-rupiah.html,  diakses tanggal  19Maret 2017)
-- solusi/problem solving
-- riset yang mendukung solusi terhadap masalah
--kesimpulan
+[]. Putri, N. "Angka siswa yang salah pilih jurusan masih tinggi". Skystar Ventures. 2018.Tersedia: [tautan](http://www.skystarventures.com/youthmanual-angka-siswa-yang-salah-pilih-jurusan-masih-tinggi/).  Diakses pada 14 Maret 2024.
+
+[]. Pragnata Galang, et al. "ANALISIS PROBABILITAS PEMINAT JURUSAN SAINTEK DI UNIVERSITAS JEMBER TAHUN 2021 MENGGUNAKAN METODOLOGI DISTRIBUSI POISSON". ResearchGate. 2021. Tersedia: [tautan](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON).  Diakses pada 14 Maret 2024.
+
+Handrico, A. (2012). Sistem
+rekomendasi buku perpustakaan
+fakultas sains dan teknologi dengan
+metode collaborative filtering.
+Jurusan teknik informatika, Fakultas
+sains dan Teknologi universitas Islam
+negeri Sultan Syarif Kasim
+Riau. Pekanbaru
+
+Ricci, F., Rokach, L., & Saphira, B.
+(2010). Introduction to
+recommender systems handbook. In
+F. Ricci, L. Rokach, B. Saphira, & P. B. Kantor (Eds.), Recommender
+systems handbook (pp. 1–29). New
+York: Springer.
+
 ### 1. Problem Statements
 * Berdasarkan data mengenai pengguna, bagaimana membuat sistem rekomendasi yang dipersonalisasi dengan teknik content-based filtering?
 * Dengan data rating yang dimiliki, bagaimana perusahaan dapat merekomendasikan buku lain yang mungkin disukai dan belum pernah dikunjungi atau dibaca oleh pengguna?
-
+* Sulitnya dalam memilih ataupun membeli laptop yang tepat dan sesuai keinginan. b) Dibutuhkannya suatu sistem yang dapat memberikan rekomendasi atau saran dalam memilih ataupun membeli laptop.
 ### 2. Goals
 Untuk menjawab pertanyaan tersebut, perusahaan akan membuat sebuah sistem rekomendasi dengan tujuan atau goals sebagai berikut:
 
