@@ -77,11 +77,17 @@ Droping column
 Check Characteristic Dataset
 Count Uniq Value
 ### Dataset Score Science
+Droping column
+Check Characteristic Dataset
+Count Uniq Value
 Count Mean of Specific Column
 
-### Data Prepocessing
- Merge Third Column Dataset
-
+Merge Third Column Dataset
+Filtering Irrelevant Values
+Removing Irrelevant Values
+Overcoming Missing Value
+Dropping Duplicated Columns
+Visualisation of Sample Variable Dataset Final
 
 ## Data Preparation - Umum :
 
