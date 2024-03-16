@@ -30,11 +30,11 @@ Dapat diambil kesimpulan dari beberapa infromasi diatas bahwa sistem rekomendasi
 [8]. Pragnata Galang, et al. "ANALISIS PROBABILITAS PEMINAT JURUSAN SAINTEK DI UNIVERSITAS JEMBER TAHUN 2021 MENGGUNAKAN METODOLOGI DISTRIBUSI POISSON". ResearchGate. 2021. Tersedia: [tautan](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON). Diakses pada 14 Maret 2024.
 ### 1. Problem Statements
 Berdasarkan latar belakang yang telah diuraikan sebelumnya, sistem rekomendasi akan dikembangkan dalam bentuk model untuk menjawab dua permasalahan berikut:
-* Bagaimana  membuat sistem rekomendasi jurusan yang tepat dan sesuai keinginan para mahasiswa jika mereka ingin menyesuaikannya berdasarkan universitas yang mereka pilih? 
+* Bagaimana  membuat sistem rekomendasi jurusan yang sesuai dengan keinginan para mahasiswa jika mereka ingin menyesuaikannya berdasarkan universitas yang mereka pilih? 
 * Dengan data rata-rata skor ujian yang dimiliki para mahasiswa, bagaimana model dapat merekomendasikan jurusan yang mungkin cocok dan belum pernah diketahui oleh mereka?
 ### 2. Goals
 Untuk menjawab pertanyaan tersebut, sebuah model sistem rekomendasi akan dibuat dengan tujuan atau goals sebagai berikut:
-* Menghasilkan sejumlah rekomendasi jurusan berdasarkan universitas yang dipilih sesuai keinginan para mahasiswa dengan memanfaatkan teknik content-based filtering(CB).
+* Menghasilkan sejumlah rekomendasi jurusan berdasarkan universitas yang dipilih sesuai keinginan para mahasiswa dengan teknik content-based filtering(CB).
 * Menghasilkan sejumlah rekomendasi jurusan yang sesuai dengan rata-rata skor ujian para mahasiswa dan belum pernah diketahui sebelumnya dengan teknik collaborative filtering(CF).
 
 
@@ -43,32 +43,32 @@ Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filte
 
 
 ## Data Understanding
-Dataset yang digunakan pada proyek ini adalah  yang diunduh dari platform Kaggle.
+Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama *Indonesia College Entrance Examination - UTBK 2019*. Berdasarkan infromasi yang berasal dari sumber data, data yang dikumpulkan oleh Eko J. Salim diperoleh dari situs pemeringkatan tempat peserta ujian. Ada sekitar 147 ribu sampel (dari 1,1 juta jumlah skor total) dan data ini tidak menunjukkan keseluruhan 1,1 juta kumpulan data karena dikumpulkan dari sumber pihak ketiga (mungkin ada beberapa data yang tidak valid). Terdapat 4 buah dataset yang ada, tetapi yang digunakan dalam pengembangan model sistem rekomendasi kali ini hanya 3 buah. Ketiga dataset, yaitu major.csv, score_science.csv, dan universities.csv.
+### 1. Variabel - variabel yang ada pada ketiga dataset *Indonesia College Entrance Examination - UTBK 2019* adalah sebagai berikut:
+**Variabel pada dataset major:**
+id_major	
+id_university
+type	
+major_name	
+capacity
 
-Menurut informasi dari sumber dataset, data dikumpulkan oleh Cai-Nicolas Ziegler selama 4 minggu pada tahun 2004 dari komunitas Book-Crossing. Dataset ini berisi 278.858 pengguna (anonim tetapi dengan informasi demografis) yang memberikan 1.149.780 peringkat (secara eksplisit/implisit) tentang 271.379 buku.
+**Variabel pada dataset score_science:**
+id_major	
+id_university	
+id_user	
+score_bio	
+score_fis	
+score_kim	
+score_kmb	
+score_kpu	
+score_kua	
+score_mat	
+score_ppu
 
-### 1. Variabel - variabel pada Book Recommendation Dataset adalah sebagai berikut:
-**Variabel pada dataset Books:**
+**Variabel pada dataset universities:**
+id_university: kode unik untuk sebuah universitas.
+university_name: nama sebuah universitas.
 
-ISBN : nomor ISBN (International Standard Book Number) dari buku.
-Book-Title : judul buku.
-Book-Author : nama penulis buku.
-Year-Of-Publication : tahun publikasi buku.
-Publisher : nama penerbit buku.
-Image-URL-S : ukuran gambar small (kecil) dari buku berupa link URL.
-Image-URL-M : ukuran gambar medium (sedang) dari buku berupa link URL.
-Image-URL-L : ukuran gambar large (besar) dari buku berupa link URL.
-
-**Variabel pada dataset Ratings:**
-
-User-ID : kode unik untuk nama pengguna anonim yang memberikan penilaian.
-ISBN : nomor ISBN (International Standard Book Number) dari buku.
-Book-Rating : rating atau peringkat buku dari pengguna atau pembaca.
-Variabel pada dataset Users:
-
-User-ID : kode unik untuk nama pengguna anonim.
-Location : lokasi pengguna.
-Age : usia pengguna.
 
 
 ## 2. Exploratory Data Analysis (EDA)
