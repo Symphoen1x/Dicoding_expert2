@@ -11,23 +11,6 @@
 Berdasarkan hasil riset dari jurnal RevoU pada tahun 2023 tentang pertumbuhan peminat jurusan saintek dan non-saintek atau Soshum di 10 kampus terbaik Indonesia, ada sebanyak 29 jurusan Saintek dan 21 jurusan non-saintek dengan persentase masing-masing 58% dan 42% dengan selisih 16% [[7]](https://journal.revou.co/pertumbuhan-program-studi-2023/). Penelitian lain juga memperkuat hasil tersebut bahwa data jumlah peminat mahasiswa jurusan saintek dan soshum dari tahun 2016-2020 di salah satu universitas yang ada di Indonesia menunjukan perbedaan pada jurusan saintek yang lebih unggul daripada jurusan soshum [[8]](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON). Kondisi ini menunjukan bahwa daya saing dan minat mahasiswa terhadap kedua pilihan jurusan tersebut hampir setara, tetapi peminat saintek sedikit unggul jumlahnya dari peminat non-saintek.  
 
 Dapat diambil kesimpulan dari beberapa infromasi diatas bahwa sistem rekomendasi sangat diperlukan dalam rangka meminimalisasi terjadinya kasus mahasiswa salah jurusan karena banyaknya sumber informasi yang beredar terkait infromasi jurusan sehingga membuat para mahasiswa bingung untuk mengeksplorasinya. Kemudian dalam hal teknis, sistem rekomendasi yang akan dikembangkan menggunakan dua teknik, yaitu content based filtering(CB) dan collaborative filtering (CF). Terakhir, pengembangan sistem rekomendasi ini akan disesuaikan berdasarkan dua riset yang menunjukan saintek memiliki peminat yang lebih banyak dari pada jurusan soshum. Oleh karena itu, model sistem rekomendasi yang akan dibuat akan lebih spesifik menggunakan sampel data dari peminat jurusan saintek karena dilihat dari segi jumlahnya yang lebih banyak.
-
-
-[1]. Putri, N. "Angka siswa yang salah pilih jurusan masih tinggi". Skystar Ventures. 2018.Tersedia: [tautan](http://www.skystarventures.com/youthmanual-angka-siswa-yang-salah-pilih-jurusan-masih-tinggi/).  Diakses pada 14 Maret 2024.
-
-[2]. Indonesia Career Center Network. "Hasil penelitian ICCN(indonesia career center network)". ICCN. 2017. Tersedia: [tautan](https://indonesiacareercenter.id/).
-
-[3]. Setiani, Tia Dwi. "Machine Learning Terapan". Dicoding. 2021. Tersedia: [tautan](https://www.dicoding.com/academies/319/corridor). Diakses pada 14 Maret 2024.
-
-[4]. Eka, Angga Laksana. "COLLABORATIVE FILTERING DAN APLIKASINYA". Universitas Widyatama. 2014. Tersedia: [tautan](https://journal.widyatama.ac.id/index.php/jitter/article/view/44). Diakses pada 14 Maret 2024.
-
-[5]. Handrico, A. "Sistem rekomendasi buku perpustakaan fakultas sains dan teknologi dengan metode collaborative filtering". Google Scholar. 2012. Tersedia: [tautan](https://scholar.google.com/scholar?hl=id&as_sdt=0%2C5&q=Handrico%2C+A.+%22Sistem+rekomendasi+buku+perpustakaan+fakultas+sains+dan+teknologi+dengan+metode+collaborative+filtering%22.++Jurusan+teknik+informatika%2C+Fakultas+sains+dan+Teknologi+universitas+Islam+negeri+Sultan+Syarif+Kasim+Riau.+Pekanbaru&btnG=). Diakses pada 14 Maret 2024.
-
-[6]. Prasetyo Bondan, et al. "Implementasi Metode Item-Based Collaborative Filtering dalam Pemberian Rekomendasi Calon Pembeli Aksesoris Smartphone". Jurnal Eksplora Informatika. 2019. Tersedia: [tautan](https://eksplora.stikom-bali.ac.id/index.php/eksplora/issue/view/17). Diakses pada 14 Maret 2024.
-
-[7]. Vazrina Putri. "Jurusan Kuliah dengan Pertumbuhan Mahasiswa Terbesar di Indonesia". RevoU. 2023. Tersedia: [tautan](https://journal.revou.co/pertumbuhan-program-studi-2023/). Diakses pada 14 Maret 2024.
-
-[8]. Pragnata Galang, et al. "ANALISIS PROBABILITAS PEMINAT JURUSAN SAINTEK DI UNIVERSITAS JEMBER TAHUN 2021 MENGGUNAKAN METODOLOGI DISTRIBUSI POISSON". ResearchGate. 2021. Tersedia: [tautan](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON). Diakses pada 14 Maret 2024.
 ### 1. Problem Statements
 Berdasarkan latar belakang yang telah diuraikan sebelumnya, sistem rekomendasi akan dikembangkan dalam bentuk model untuk menjawab dua permasalahan berikut:
 * Bagaimana  membuat sistem rekomendasi jurusan yang sesuai dengan keinginan para mahasiswa jika mereka ingin menyesuaikannya berdasarkan universitas yang mereka pilih? 
@@ -39,59 +22,59 @@ Untuk menjawab pertanyaan tersebut, sebuah model sistem rekomendasi akan dibuat 
 
 
 ### 3. Solution Statements
-Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutif untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan nama universitas yang disukai pengguna(mahasiswa). Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer, kalkulasi tingkat kesamaan (similarity measure) dengan cosine similarity, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
+Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutif untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan nama universitas yang disukai pengguna(mahasiswa). Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan **TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer**, kalkulasi tingkat kesamaan (similarity measure) dengan **cosine similarity**, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
 
 
 ## Data Understanding
 Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama *Indonesia College Entrance Examination - UTBK 2019*. Berdasarkan infromasi yang berasal dari sumber data, data yang dikumpulkan oleh Eko J. Salim diperoleh dari situs pemeringkatan tempat peserta ujian. Ada sekitar 147 ribu sampel (dari 1,1 juta jumlah skor total) dan data ini tidak menunjukkan keseluruhan 1,1 juta kumpulan data karena dikumpulkan dari sumber pihak ketiga (mungkin ada beberapa data yang tidak valid). Terdapat 4 buah dataset yang ada, tetapi yang digunakan dalam pengembangan model sistem rekomendasi kali ini hanya 3 buah. Ketiga dataset, yaitu major atau jurusan, score_science atau skor saintek, dan universities.
 ### 1. Variabel - variabel yang ada pada ketiga dataset *Indonesia College Entrance Examination - UTBK 2019* adalah sebagai berikut:
 **Variabel pada dataset major:**
-id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
-id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
-type: Variabel ini mungkin menggambarkan jenis atau kategori tertentu yang terkait dengan jurusan atau program studi, meskipun deskripsi spesifiknya tidak disediakan dalam penjelasan yang diberikan.
-major_name: Merupakan nama dari jurusan atau program studi.
-capacity: Merupakan kapasitas atau jumlah maksimum mahasiswa yang dapat diterima dalam jurusan atau program studi tersebut.
+* id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
+* id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
+* type: Variabel ini mungkin menggambarkan jenis atau kategori tertentu yang terkait dengan jurusan atau program studi, meskipun deskripsi spesifiknya tidak disediakan dalam penjelasan yang diberikan.
+* major_name: Merupakan nama dari jurusan atau program studi.
+* capacity: Merupakan kapasitas atau jumlah maksimum mahasiswa yang dapat diterima dalam jurusan atau program studi tersebut.
 
 **Variabel pada dataset score_science:**
-id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
-id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
-id_user: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik seorang calon mahasiswa atau pengguna dalam dataset.
-score_bio: Merupakan skor yang diperoleh oleh pengguna dalam tes biologi.
-score_fis: Merupakan skor yang diperoleh oleh pengguna dalam tes fisika.
-score_kim: Merupakan skor yang diperoleh oleh pengguna dalam tes kimia.
-score_kmb: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan memahami bacaan dan menulis.
-score_kpu: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan penalaran umum.
-score_kua: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan kuantitatif.
-score_mat: Merupakan skor yang diperoleh oleh pengguna dalam tes matematika.
-score_ppu: Merupakan skor yang diperoleh oleh pengguna dalam tes pengetahuan dan pemahaman umum.
+* id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
+* id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
+* id_user: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik seorang calon mahasiswa atau pengguna dalam dataset.
+* score_bio: Merupakan skor yang diperoleh oleh pengguna dalam tes biologi.
+* score_fis: Merupakan skor yang diperoleh oleh pengguna dalam tes fisika.
+* score_kim: Merupakan skor yang diperoleh oleh pengguna dalam tes kimia.
+* score_kmb: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan memahami bacaan dan menulis.
+* score_kpu: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan penalaran umum.
+* score_kua: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan kuantitatif.
+* score_mat: Merupakan skor yang diperoleh oleh pengguna dalam tes matematika.
+* score_ppu: Merupakan skor yang diperoleh oleh pengguna dalam tes pengetahuan dan pemahaman umum.
 
 **Variabel pada dataset universities:**
-id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
-university_name: Merupakan nama sebuah universitas.
+* id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
+* university_name: Merupakan nama dari sebuah universitas.
 
 
 
 ## 2. Exploratory Data Analysis (EDA)
 ### Dataset Universitas
-Droping column
-Check Characteristic Dataset
-Count Uniq Value
+* Droping column
+* Check Characteristic Dataset
+* Count Uniq Value
 ### Dataset Program Studi
-Droping column
-Check Characteristic Dataset
-Count Uniq Value
+* Droping column
+* Check Characteristic Dataset
+* Count Uniq Value
 ### Dataset Score Science
-Droping column
-Check Characteristic Dataset
-Count Uniq Value
-Count Mean of Specific Column
+* Droping column
+* Check Characteristic Dataset
+* Count Uniq Value
+* Count Mean of Specific Column
 
-Merge Third Column Dataset
-Filtering Irrelevant Values
-Removing Irrelevant Values
-Overcoming Missing Value
-Dropping Duplicated Columns
-Visualisation of Sample Variable Dataset Final
+### Merge Third Column Dataset
+### Filtering Irrelevant Values
+### Removing Irrelevant Values
+### Overcoming Missing Value
+### Dropping Duplicated Columns
+### Visualisation of Sample Variable Dataset Final
 
 ## Data Preparation - Umum :
 
@@ -295,6 +278,18 @@ Pada projek ini kita telah melalui berbagai tahapan mulai dari memahami ulasan p
 
 ## Reference
 
-[1] Setiani, Tia Dwi. "Machine Learning Terapan". Dicoding. 2021. Tersedia: [tautan](https://www.dicoding.com/academies/319/corridor). Diakses pada 05 November 2022.
+[1]. Putri, N. "Angka siswa yang salah pilih jurusan masih tinggi". Skystar Ventures. 2018.Tersedia: [tautan](http://www.skystarventures.com/youthmanual-angka-siswa-yang-salah-pilih-jurusan-masih-tinggi/).  Diakses pada 14 Maret 2024.
 
-[2] Ricci, Francesco, et al. "Recommender Systems Handbook". Springer Media. 2011. Tersedia: [tautan](https://www.cse.iitk.ac.in/users/nsrivast/HCC/Recommender_systems_handbook.pdf). Diakses pada 05 November 2022
+[2]. Indonesia Career Center Network. "Hasil penelitian ICCN(indonesia career center network)". ICCN. 2017. Tersedia: [tautan](https://indonesiacareercenter.id/).
+
+[3]. Setiani, Tia Dwi. "Machine Learning Terapan". Dicoding. 2021. Tersedia: [tautan](https://www.dicoding.com/academies/319/corridor). Diakses pada 14 Maret 2024.
+
+[4]. Eka, Angga Laksana. "COLLABORATIVE FILTERING DAN APLIKASINYA". Universitas Widyatama. 2014. Tersedia: [tautan](https://journal.widyatama.ac.id/index.php/jitter/article/view/44). Diakses pada 14 Maret 2024.
+
+[5]. Handrico, A. "Sistem rekomendasi buku perpustakaan fakultas sains dan teknologi dengan metode collaborative filtering". Google Scholar. 2012. Tersedia: [tautan](https://scholar.google.com/scholar?hl=id&as_sdt=0%2C5&q=Handrico%2C+A.+%22Sistem+rekomendasi+buku+perpustakaan+fakultas+sains+dan+teknologi+dengan+metode+collaborative+filtering%22.++Jurusan+teknik+informatika%2C+Fakultas+sains+dan+Teknologi+universitas+Islam+negeri+Sultan+Syarif+Kasim+Riau.+Pekanbaru&btnG=). Diakses pada 14 Maret 2024.
+
+[6]. Prasetyo Bondan, et al. "Implementasi Metode Item-Based Collaborative Filtering dalam Pemberian Rekomendasi Calon Pembeli Aksesoris Smartphone". Jurnal Eksplora Informatika. 2019. Tersedia: [tautan](https://eksplora.stikom-bali.ac.id/index.php/eksplora/issue/view/17). Diakses pada 14 Maret 2024.
+
+[7]. Vazrina Putri. "Jurusan Kuliah dengan Pertumbuhan Mahasiswa Terbesar di Indonesia". RevoU. 2023. Tersedia: [tautan](https://journal.revou.co/pertumbuhan-program-studi-2023/). Diakses pada 14 Maret 2024.
+
+[8]. Pragnata Galang, et al. "ANALISIS PROBABILITAS PEMINAT JURUSAN SAINTEK DI UNIVERSITAS JEMBER TAHUN 2021 MENGGUNAKAN METODOLOGI DISTRIBUSI POISSON". ResearchGate. 2021. Tersedia: [tautan](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON). Diakses pada 14 Maret 2024.
