@@ -39,35 +39,35 @@ Untuk menjawab pertanyaan tersebut, sebuah model sistem rekomendasi akan dibuat 
 
 
 ### 3. Solution Statements
-Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutig untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan nama universitas yang disukai pengguna(mahasiswa). Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer, kalkulasi tingkat kesamaan (similarity measure) dengan cosine similarity, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
+Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutif untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan nama universitas yang disukai pengguna(mahasiswa). Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer, kalkulasi tingkat kesamaan (similarity measure) dengan cosine similarity, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
 
 
 ## Data Understanding
-Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama *Indonesia College Entrance Examination - UTBK 2019*. Berdasarkan infromasi yang berasal dari sumber data, data yang dikumpulkan oleh Eko J. Salim diperoleh dari situs pemeringkatan tempat peserta ujian. Ada sekitar 147 ribu sampel (dari 1,1 juta jumlah skor total) dan data ini tidak menunjukkan keseluruhan 1,1 juta kumpulan data karena dikumpulkan dari sumber pihak ketiga (mungkin ada beberapa data yang tidak valid). Terdapat 4 buah dataset yang ada, tetapi yang digunakan dalam pengembangan model sistem rekomendasi kali ini hanya 3 buah. Ketiga dataset, yaitu major.csv, score_science.csv, dan universities.csv.
+Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama *Indonesia College Entrance Examination - UTBK 2019*. Berdasarkan infromasi yang berasal dari sumber data, data yang dikumpulkan oleh Eko J. Salim diperoleh dari situs pemeringkatan tempat peserta ujian. Ada sekitar 147 ribu sampel (dari 1,1 juta jumlah skor total) dan data ini tidak menunjukkan keseluruhan 1,1 juta kumpulan data karena dikumpulkan dari sumber pihak ketiga (mungkin ada beberapa data yang tidak valid). Terdapat 4 buah dataset yang ada, tetapi yang digunakan dalam pengembangan model sistem rekomendasi kali ini hanya 3 buah. Ketiga dataset, yaitu major atau jurusan, score_science atau skor saintek, dan universities.
 ### 1. Variabel - variabel yang ada pada ketiga dataset *Indonesia College Entrance Examination - UTBK 2019* adalah sebagai berikut:
 **Variabel pada dataset major:**
-id_major	
-id_university
-type	
-major_name	
-capacity
+id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
+id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
+type: Variabel ini mungkin menggambarkan jenis atau kategori tertentu yang terkait dengan jurusan atau program studi, meskipun deskripsi spesifiknya tidak disediakan dalam penjelasan yang diberikan.
+major_name: Merupakan nama dari jurusan atau program studi.
+capacity: Merupakan kapasitas atau jumlah maksimum mahasiswa yang dapat diterima dalam jurusan atau program studi tersebut.
 
 **Variabel pada dataset score_science:**
-id_major	
-id_university	
-id_user	
-score_bio	
-score_fis	
-score_kim	
-score_kmb	
-score_kpu	
-score_kua	
-score_mat	
-score_ppu
+id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
+id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
+id_user: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik seorang calon mahasiswa atau pengguna dalam dataset.
+score_bio: Merupakan skor yang diperoleh oleh pengguna dalam tes biologi.
+score_fis: Merupakan skor yang diperoleh oleh pengguna dalam tes fisika.
+score_kim: Merupakan skor yang diperoleh oleh pengguna dalam tes kimia.
+score_kmb: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan memahami bacaan dan menulis.
+score_kpu: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan penalaran umum.
+score_kua: Merupakan skor yang diperoleh oleh pengguna dalam tes kemampuan kuantitatif.
+score_mat: Merupakan skor yang diperoleh oleh pengguna dalam tes matematika.
+score_ppu: Merupakan skor yang diperoleh oleh pengguna dalam tes pengetahuan dan pemahaman umum.
 
 **Variabel pada dataset universities:**
-id_university: kode unik untuk sebuah universitas.
-university_name: nama sebuah universitas.
+id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
+university_name: Merupakan nama sebuah universitas.
 
 
 
