@@ -1,8 +1,6 @@
 # Sistem Rekomendasi Program Studi Saintek Menggunakan Teknik Conten Based Filtering dan Collaborative Filtering.
 
 ## Project Overview
-
-## Business Understanding
   Dalam menempuh pendidikan ke jenjang perguruan tinggi, bukanlah suatu perjalanan yang mudah untuk dihadapi, melainkan suatu perjalanan yang di dalamnya para mahasiswa akan menemui berbagai tantangan dan rintangan. Salah satu hal yang sering menjadi masalah di bagian awal adalah tidak mudahnya dalam memilih jurusan yang sesuai dengan diri sehingga banyak mahasiswa yang mengalami salah jurusan. Berdasarkan penelitian dari Youthmanual tentang profil mahasiswa di seluruh Indonesia bahwa hasil penelitian menunjukan fakta yang cukup menarik, yakni 92% mahasiswa tidak tahu akan menjadi apa kedepannya dan 45% mahasiswa merasa salah mengambil jurusan [[1]](http://www.skystarventures.com/youthmanual-angka-siswa-yang-salah-pilih-jurusan-masih-tinggi/). Penilitian lain dari Data Indonesia Career Center Network (ICCN) tahun 2017 mengungkapkan demikian bawha lebih dari 71,7% orang bekerja tidak linier dengan pendidikannya dan lebih dari 87% pelajar dan mahasiswa tidak sesuai dengan minatnya ketika mengambil jurusan di dunia pendidikan [[2]](https://indonesiacareercenter.id/). Kedua penelitian tersebut menunjukan bahwa para mahasiswa memiliki masalah dalam memilih jurusan yang disebabkan oleh beberapa faktor. Salah satu faktor yang bisa menjadi penyebab dari masalah tersebut adalah kurangnya eskplorasi data atau infromasi dari setiap jurusan bagi beberapa mahasiswa. Disamping itu, era saat ini yang penuh dengan infromasi dari berbagai sumber membuat beberapa mahasiswa bingung untuk memilih sumber mana yang akan dijadikan patokan dalam mengeskplorasi data atau informasi terkait program studi.
   
   Maka dari itu, sebuah sistem rekomendasi (recommendation system) diperlukan agar dapat memberikan rekomendasi jurusan masuk perguruan tinggi berdasarkan ketertarikan dan kebutukan dalam pencarian referensi. Dalam sistem rekomendasi, algoritma yang biasanya digunakan adalah content based filtering(CB) dan collaborative filtering (CF). Ide dari sistem rekomendasi content based filtering(CB) adalah merokomendasikan suatu item yang menggunakan deskripsi dari item tersebut. Cara kerjanya sendiri dengan mempelajari minat pengguna baru berdasarkan item yang mirip dengan yang disukai pengguna di masa lalu atau sedang dilihat di masa kini. Semakin banyak informasi yang diberikan pengguna maka akan semakin baik akurasi sistem rekomendasi [[3]](https://www.dicoding.com/academies/319/corridor). Berbeda dengan Collaborative filtering(CF), model ini  dibagi menjadi dua jenis, yaitu  Model-based (metode berbasis model *machine learning*) dan Memory-based (metode berbasis memori). Jenis Model-based tidak jauh algoritma Memory-based, yaitu tetap menggunakan nilai rating sebagai sumber data. Namun, algoritma ini memanfaatkan teknik-teknik di data mining atau machine learning seperti Bayesian, clustering, dan *Deep learning atau Neural Network* [[4]](https://journal.widyatama.ac.id/index.php/jitter/article/view/44). Sedangkan, pada jenis Memori-based terbagi lagi menjadi User-based Collaborative Filtering  dan Item-based Collaborative Filtering. User-based Collaborative Filtering atau user-based CF dan bekerja dengan menemukan kesamaan antar pengguna lalu model akan merekomendasikan selera yang sama dengan pengguna lain kepada pengguna tersebut [[5]](https://scholar.google.com/scholar?hl=id&as_sdt=0%2C5&q=Handrico%2C+A.+%22Sistem+rekomendasi+buku+perpustakaan+fakultas+sains+dan+teknologi+dengan+metode+collaborative+filtering%22.++Jurusan+teknik+informatika%2C+Fakultas+sains+dan+Teknologi+universitas+Islam+negeri+Sultan+Syarif+Kasim+Riau.+Pekanbaru&btnG=).  bekerja dengan cara menghitung kesamaan beberapa item [[6]](https://doi.org/10.30864/eksplora.v9i1.244).
@@ -11,6 +9,7 @@
 Berdasarkan hasil riset dari jurnal RevoU pada tahun 2023 tentang pertumbuhan peminat jurusan saintek dan non-saintek atau Soshum di 10 kampus terbaik Indonesia, ada sebanyak 29 jurusan Saintek dan 21 jurusan non-saintek dengan persentase masing-masing 58% dan 42% dengan selisih 16% [[7]](https://journal.revou.co/pertumbuhan-program-studi-2023/). Penelitian lain juga memperkuat hasil tersebut bahwa data jumlah peminat mahasiswa jurusan saintek dan soshum dari tahun 2016-2020 di salah satu universitas yang ada di Indonesia menunjukan perbedaan pada jurusan saintek yang lebih unggul daripada jurusan soshum [[8]](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON). Kondisi ini menunjukan bahwa daya saing dan minat mahasiswa terhadap kedua pilihan jurusan tersebut hampir setara, tetapi peminat saintek sedikit unggul jumlahnya dari peminat non-saintek.  
 
 Dapat diambil kesimpulan dari beberapa infromasi diatas bahwa sistem rekomendasi sangat diperlukan dalam rangka meminimalisasi terjadinya kasus mahasiswa salah jurusan karena banyaknya sumber informasi yang beredar terkait infromasi jurusan sehingga membuat para mahasiswa bingung untuk mengeksplorasinya. Kemudian dalam hal teknis, sistem rekomendasi yang akan dikembangkan menggunakan dua teknik, yaitu content based filtering(CB) dan collaborative filtering (CF). Terakhir, pengembangan sistem rekomendasi ini akan disesuaikan berdasarkan dua riset yang menunjukan saintek memiliki peminat yang lebih banyak dari pada jurusan soshum. Oleh karena itu, model sistem rekomendasi yang akan dibuat akan lebih spesifik menggunakan sampel data dari peminat jurusan saintek karena dilihat dari segi jumlahnya yang lebih banyak.
+## Business Understanding
 ### 1. Problem Statements
 Berdasarkan latar belakang yang telah diuraikan sebelumnya, sistem rekomendasi akan dikembangkan dalam bentuk model untuk menjawab dua permasalahan berikut:
 * Bagaimana  membuat sistem rekomendasi jurusan yang sesuai dengan keinginan para mahasiswa jika mereka ingin menyesuaikannya berdasarkan universitas yang mereka pilih? 
@@ -19,23 +18,24 @@ Berdasarkan latar belakang yang telah diuraikan sebelumnya, sistem rekomendasi a
 Untuk menjawab pertanyaan tersebut, sebuah model sistem rekomendasi akan dibuat dengan tujuan atau goals sebagai berikut:
 * Menghasilkan sejumlah rekomendasi jurusan berdasarkan universitas yang dipilih sesuai keinginan para mahasiswa dengan teknik content-based filtering(CB).
 * Menghasilkan sejumlah rekomendasi jurusan yang sesuai dengan rata-rata skor ujian para mahasiswa dan belum pernah diketahui sebelumnya dengan teknik collaborative filtering(CF).
-
-
 ### 3. Solution Statements
 Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutif untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan nama universitas yang disukai pengguna(mahasiswa). Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan **TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer**, kalkulasi tingkat kesamaan (similarity measure) dengan **cosine similarity**, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
 
 
 ## Data Understanding
-Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama *Indonesia College Entrance Examination - UTBK 2019*. Berdasarkan infromasi yang berasal dari sumber data, data yang dikumpulkan oleh Eko J. Salim diperoleh dari situs pemeringkatan tempat peserta ujian. Ada sekitar 147 ribu sampel (dari 1,1 juta jumlah skor total) dan data ini tidak menunjukkan keseluruhan 1,1 juta kumpulan data karena dikumpulkan dari sumber pihak ketiga (mungkin ada beberapa data yang tidak valid). Terdapat 4 buah dataset yang ada, tetapi yang digunakan dalam pengembangan model sistem rekomendasi kali ini hanya 3 buah. Ketiga dataset, yaitu major atau jurusan, score_science atau skor saintek, dan universities.
+Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama [*Indonesia College Entrance Examination - UTBK 2019*](https://www.kaggle.com/datasets/ekojsalim/indonesia-college-entrance-examination-utbk-2019). Berdasarkan infromasi yang berasal dari sumber data, data yang dikumpulkan oleh Eko J. Salim diperoleh dari situs pemeringkatan tempat peserta ujian. Ada sekitar 147 ribu sampel (dari 1,1 juta jumlah skor total) dan data ini tidak menunjukkan keseluruhan 1,1 juta kumpulan data karena dikumpulkan dari sumber pihak ketiga (mungkin ada beberapa data yang tidak valid). Terdapat 4 buah dataset yang ada, tetapi yang digunakan dalam pengembangan model sistem rekomendasi kali ini hanya 3 buah. Ketiga dataset, yaitu major atau jurusan, score_science atau skor saintek, dan universities.
 ### 1. Variabel - variabel yang ada pada ketiga dataset *Indonesia College Entrance Examination - UTBK 2019* adalah sebagai berikut:
-**Variabel pada dataset major:**
+**Variabel pada dataset major**
+Dataset major menyimpan data-data yang berkaitan dengan jurusan yang diidentifikasi memiliki primary key id_major. Pada dataset ini terdapat 3167 baris data dan 5 buah variabel, yakni:
+
 * id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
 * id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
 * type: Variabel ini mungkin menggambarkan jenis atau kategori tertentu yang terkait dengan jurusan atau program studi, meskipun deskripsi spesifiknya tidak disediakan dalam penjelasan yang diberikan.
 * major_name: Merupakan nama dari jurusan atau program studi.
 * capacity: Merupakan kapasitas atau jumlah maksimum mahasiswa yang dapat diterima dalam jurusan atau program studi tersebut.
 
-**Variabel pada dataset score_science:**
+**Variabel pada dataset score_science**
+Dataset score_science menyimpan data-data yang berkaitan dengan user beserta universitas dan jurusan yang dipilih. Dataset ini memiliki primary key id_user. Pada dataset ini terdapat 86570 baris data dan 11 buah variabel, yakni:
 * id_major: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah jurusan atau program studi dalam dataset.
 * id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
 * id_user: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik seorang calon mahasiswa atau pengguna dalam dataset.
@@ -48,28 +48,37 @@ Data yang digunakan pada proyek ini diunduh dari platform Kaggle dengan nama *In
 * score_mat: Merupakan skor yang diperoleh oleh pengguna dalam tes matematika.
 * score_ppu: Merupakan skor yang diperoleh oleh pengguna dalam tes pengetahuan dan pemahaman umum.
 
-**Variabel pada dataset universities:**
+**Variabel pada dataset universities**
+Dataset universities menyimpan data-data yang berkaitan dengan infromasi universitas. Dataset ini memiliki primary key id_university. Pada dataset ini terdapat 85 baris data dan 2 buah variabel, yakni:
 * id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
 * university_name: Merupakan nama dari sebuah universitas.
-
-
 
 ## 2. Exploratory Data Analysis (EDA)
 ### Dataset Universitas
 * Droping column
+Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_univ sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
 * Check Characteristic Dataset
+Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada datset univ, semua variabel yang telah dicek tidak menampilkan permasalahan. Jadi bisa dikatakan dataset ini cukup aman dari sumber data.
 * Count Uniq Value
+Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabel dalam dataset. Ini membantu dalam memahami variasi data dan distribusi nilai di dalamnya. Dengan menghitung nilai unik, kita dapat mengetahui seberapa bervariasi atau seberapa seragam data dalam suatu kolom. Pada kolom atau variabel universities, dataset menampilkan jumlah uniq dari beberapa variabel dengan keterangan jumlah uniq variabel id universitas dan nama universitas adalah 85.
 ### Dataset Program Studi
 * Droping column
+Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_major sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
 * Check Characteristic Dataset
+Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup  informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada dataset jurusan, semua variabel yang telah dicek juga tidak menampilkan permasalahan. Kembali lagi diambil kesimpulan bahwa dataset ini cukup aman dari sumber data.
 * Count Uniq Value
+Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabel dalam dataset. Ini membantu dalam memahami variasi data dan distribusi nilai di dalamnya. Dengan menghitung nilai unik, kita dapat mengetahui seberapa bervariasi atau seberapa seragam data dalam suatu kolom. Pada variabel major ini, dataset menampilkan jumlah uniq dari beberapa variabel dengan keterangan jumlah uniq id universitas adalah 85, uniq id major sebanyak  3167, dan uniq kapasitas sejumlah 143 baris.
 ### Dataset Score Science
 * Droping column
+Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah beberapa kolom duplikasi variabel lain sehingga tidak perlu digunakan untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
 * Check Characteristic Dataset
+Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup melihat informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada dataset Score Science, semua variabel yang telah dicek juga tidak menampilkan permasalahan. Kembali lagi diambil kesimpulan bahwa dataset ini cukup aman dari sumber data.
 * Count Uniq Value
+Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabel dalam dataset. Ini membantu dalam memahami variasi data dan distribusi nilai di dalamnya. Dengan menghitung nilai unik, kita dapat mengetahui seberapa bervariasi atau seberapa seragam data dalam suatu kolom. Pada variabel major ini, dataset menampilkan jumlah uniq dari beberapa variabel dengan keterangan jumlah uniq id_university adalah 80, uniq id major sebanyak  1546, dan uniq id_user, dan sejumlah 86570. Dari dua dataset sebelumnya, jika dicocokan dengan datset ini maka ada sedikit perbedaan terkait jumlah variabel id_university dan id_major. Untuk itu, datset akan dilakukan teknik data cleaning pada tahap selanjutnya guna mengatasi masalah missing value.
 * Count Mean of Specific Column
+Karena syarat terkait kualifikasi nilai ujian yang diminta adalah rata-rata dari beberapa tes atau ujian yang ada maka membuat kolom batu hasil rata-rata nilai ujian dibutuhkan.
+## Merge Third Column -Dataset Final
 
-### Merge Third Column Dataset
 ### Filtering Irrelevant Values
 ### Removing Irrelevant Values
 ### Overcoming Missing Value
