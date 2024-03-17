@@ -96,7 +96,7 @@ Pada tahap ini, penghapusan beberapa variabel yang kurang relevan dan telah dike
 ### Overcoming Missing Value
 Setelah proses penggabungan Dataset, banyak baris yang menjadi missing value. Hal ini disebabkan adanya perbedaan baris data dari masing-masing dataset sehingga menimbulkan hilangnya beberapa baris data sehingga teridentifikasi missing value. Beberapa variabel yang mengandung missing value, yaitu type, major_name, capacity, id_university, dan university_name. Hanya variabel id_major, id_user, dan rata-rata nilai saja yang teridentifikasi memiliki 0 missing value. Fungsi dropna akan digunakan dalam mengatasi missing value. Alasan dilakukan tahap ini agar ketika pelatihan model nanti tidak terdapat informasi yang hilang sehingga model yang dihasilkan lebih optimal.
 ### Dropping Duplicated Columns
-Proses "Dropping Duplicated Columns" dilakukan untuk menghapus kolom-kolom yang memiliki nilai yang sama di setiap barisnya. Tujuan utamanya adalah untuk membersihkan data dan menghilangkan redundansi, sehingga memungkinkan analisis data yang lebih akurat dan efisien. Kali ini variabel id_major terdeteksi mengandung duplikat data.
+Proses "Dropping Duplicated Columns" dilakukan untuk menghapus kolom-kolom yang memiliki nilai yang sama di setiap barisnya. Tujuan utamanya adalah untuk membersihkan data dan menghilangkan redundansi, sehingga memungkinkan analisis data yang lebih akurat dan efisien. Kali ini variabel major_name terdeteksi mengandung duplikat data.
 ## Data Preparation - Content Based Filtering
 ### Convert Series-List Data
 Tujuan dari proses ini untuk mengubah bentuk data yang awalnya berbentuk dataframe menjadi berbentuk list sehingga persyaratan pada input tahap TF-IDF Vectorizer terpenuhi. Proses ini akan menggunakan fungsi `tolist().
@@ -123,63 +123,61 @@ Kekurangan teknik Content Based Filtering:
 Metode evaluasi ini, yang dikenal sebagai TF-IDF (Term Frequency-Inverse Document Frequency), bertujuan untuk menilai signifikansi suatu kata dalam konteks kata-kata lain dalam sebuah dokumen. Matematisnya, TF-IDF terdiri dari dua faktor: TF (Term Frequency) dan IDF (Inverse Document Frequency). TF mengukur seberapa sering sebuah kata muncul dalam sebuah teks, sementara IDF mengukur seberapa umum kata tersebut di seluruh dokumen. Panjang teks dapat bervariasi antar dokumen sehingga mempengaruhi cara perhitungan TF dan IDF. Maka dari itu, perhitungan TF-IDF penting dilakukan karena memberikan cara yang lebih cermat untuk mengevaluasi signifikansi suatu kata dalam sebuah dokumen daripada hanya menggunakan frekuensi kemunculan kata tersebut (seperti yang dilakukan dalam metode TF biasa).  Proses ini menggunakan fungsi ` TfidfVectorizer()`. Kemudian variabel *major_name* akan digunakan dalam perhitungan idf, mapping array dari fitur index integer ke fitur nama, dan  transfromasi fit ke bentuk matrix. Hasilnya adalah sebuah matrix dengan ukuran sebesar 1541 ukuran data x 220 jenis nama jurusan. Selanjutnya matrix dibentuk dengan menggunakan fungsi `todense()`. Proses ini bertujuan sebagai bahan untuk dapat diproses ke tahap berikutnya, yaitu menghitung tingkat kemiripan(Cosine Similarity)
 ### Cosine Similarity
 
-Tujuan dari tahap Kesamaan cosinus adalah mengukur kesamaan antara dua vektor dan menentukan apakah mereka mengarah ke arah yang sama. Tahap kesamaan kosinus penting dalam model content-based filtering karena memberikan cara yang efektif untuk mengukur kesamaan antara dua vektor yang mewakili item-item dengan menghitung sudut kosinusnya. Semakin kecil sudut cosinusnya, semakin besar nilai kesamaan cosinus. Metrik ini sering digunakan untuk mengukur kesamaan dokumen dalam analisis teks. Sebelumnya, dataframe dibuat dengan nama `tfidf_matrix' untuk menghitung kesamaan cosinus antar id jurusan. Proses tersebut menggunakan fungsi `cosine_similarity()`. Hasil akhir dari proses ini adalah dataframe baru dengan nama 'df' yang berisi hasil perhitungan cosinus antara id major dengan id major.
+Tujuan dari tahap Kesamaan cosinus adalah mengukur kesamaan antara dua vektor dan menentukan apakah mereka mengarah ke arah yang sama. Tahap kesamaan kosinus penting dalam model content-based filtering karena memberikan cara yang efektif untuk mengukur kesamaan antara dua vektor yang mewakili item-item dengan menghitung sudut kosinusnya. Semakin kecil sudut cosinusnya, semakin besar nilai kesamaan cosinus. Metrik ini sering digunakan untuk mengukur kesamaan dokumen dalam analisis teks. Sebelumnya, dataframe dibuat dengan nama `tfidf_matrix' untuk menghitung kesamaan cosinus antar id jurusan. Proses tersebut menggunakan fungsi `cosine_similarity()`. Hasil akhir dari proses ini adalah dataframe baru dengan nama 'df' yang berisi hasil hitung kesamaan cosinus antara variabel id major dengan id major.
 
 ### Presenting Top-N Recommendation
-Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat dengan beberapa parameter yang terdiri dari parameter wajib 'id_major'(jurusan yang ingin dicari rekomendasinya) dan sisanya opsional, yaitu 'similarity_data'(Matriks kesamaan kosinus antar-jurusan yang telah dihitung sebelumnya), 'items'(DataFrame yang berisi informasi mengenai setiap jurusan, termasuk ID jurusan, nama universitas, dan nama jurusan), dan 'k'(Jumlah rekomendasi yang ingin diberikan. Ini adalah parameter opsional dengan nilai default 5). Fungsi ini berkerja dengan mengambil data melalui menggunakan fungsi `argpartition()` untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan, selanjutnya melakukan pengubahan data menjadi numpy dan membuat range yang terdiri dari `range(start, stop, step)`. Setelah itu, data akan diambil pada similarity terbesar dari index yang ada. Terdapat pula langkah menghapus nama jurusan sehingga model tidak merekomendasikan nama jurusan yang sama dengan yang dimasukan pengguna/user melalui fungsi `drop()`. Hasil akhir dari fungsi ini adalah mengembalikan sebuah dataframe yang berisi 5 rekomendasi jurusan.
+Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat dengan beberapa parameter yang terdiri dari parameter wajib 'id_major'(jurusan yang ingin dicari rekomendasinya) dan sisanya opsional, yaitu 'similarity_data'(Matriks kesamaan kosinus antar-jurusan yang telah dihitung sebelumnya), 'items'(DataFrame yang berisi informasi mengenai setiap jurusan, termasuk ID jurusan, nama universitas, dan nama jurusan), dan 'k'(Jumlah rekomendasi yang ingin diberikan. Ini adalah parameter opsional dengan nilai default 5). Fungsi ini berkerja dengan mengambil data melalui menggunakan fungsi `argpartition()` untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan, selanjutnya melakukan pengubahan data menjadi numpy dan membuat range yang terdiri dari `range(start, stop, step)`. Setelah itu, data akan diambil pada similarity terbesar dari index yang ada. Terdapat pula langkah menghapus id jurusan sehingga model tidak merekomendasikan nama jurusan yang sama dengan yang dimasukan pengguna/user melalui fungsi `drop()`. Hasil akhir dari fungsi ini adalah mengembalikan sebuah dataframe yang berisi 5 rekomendasi jurusan.
 
 Berikut hasil rekomendasi dari jurusan dengan target id jurusan `0155061224` :
+|-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|:---------------|:-------------|:-------------|:-----------|:-------------|--------------:|
 
-- **Data Buku `0155061224`** :
-
-| No | ISBN | Book Author | Book Title |
-|--|---|:---:|---|
-| 1. | 0155061224 | Judith Rae	| Rites of Passage |
-
-
-- **5 Rekomendasi Buku, Berdasarkan Konten Buku `0155061224`**
-
-| No | ISBN | Book Author | Book Title |
-|--|---|:---:|---|
-| 1. | 0553580515 | Connie Willis | Passage |
-| 2. | 0679435506 | Marianne Williamson | Illuminata: Thoughts, Prayers, Rites of Passage |
-| 3. | 0380715325 | Alison McLeay | Passage Home |
-| 4. | 0812510488 | Christopher Pike	 | The Season of Passage |
-| 5. | 0373031203 | Rebecca Winters | Rites Of Love (Harlequin Romance, No 3120) |
+- **Tabel 1. Data Jurusan dengan Id `3611476`** :
+ 
+|index|id\_major|university\_name|major\_name|
+|------:|------:|-----------------:|:------------|
+|118|3611476|UNIVERSITAS GADJAH MADA|HIGIENE GIGI|
 
 
+- **Tabel 2. 5 Rekomendasi Jurusan, Berdasarkan Target Jurusan dengan Id `3611476`**
 
-Dari gambar di atas terlihat kita ingin mencari rekomendasi dari buku yang berjudul **Rites of Passage** dan sistem kita sudah dapat merekomendasikan judul buku yang serupa, memberikan judul buku yang memiliki keyword *Rites* atau/dan *of Passage*.
+|index|id\_major|university\_name|major\_name|
+|------:|------:|-----------------:|:------------|
+|0|3721305|UNIVERSITAS BRAWIJAYA|PENDIDIKAN DOKTER GIGI|
+|1|1111181|UNIVERSITAS SYIAH KUALA|PENDIDIKAN DOKTER GIGI|
+|2|6111262|UNIVERSITAS UDAYANA|PENDIDIKAN DOKTER GIGI|
+|3|3511212|UNIVERSITAS JENDERAL SOEDIRMAN|PENDIDIKAN DOKTER GIGI|
+|4|1711075|UNIVERSITAS SRIWIJAYA|PENDIDIKAN DOKTER GIGI|
+
+Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI menghasilkan 5 jurusan yang serupa dengan keyword *gigi* dan *pendidikan*.
 
 ## Data Preparation - Collaborative Filtering
 
 ### Encode Dataset
-Mengubah `userID` menjadi list tanpa nilai yang sama dengan fungsi `unique()` dan `tolist()` serta menyimpannya dalam variabel `user_ids`. Setelah itu,  Melakukan encoding `user_ids` ke dalam indeks integer dan Melakukan proses encoding angka ke ke `user_ids`. Begitu juga dengan `ISBN`, Mengubah `ISBN` menjadi list tanpa nilai yang sama dengan fungsi `unique()` dan `tolist()` serta menyimpannya dalam variabel `books_ids`. Setelah itu,  Melakukan encoding `books_ids` ke dalam indeks integer dan Melakukan proses encoding angka ke ke `book_ids`.
+Mengubah variabel `id_user` dan 'id_major' menjadi list tanpa nilai dengan fungsi `unique()` dan `tolist()`. Setelah itu,  melakukan encoding ke masing-masing  variable yang telah diubah tersebut ke dalam indeks integer dan melakukan proses encoding angka ke masing-masing  variable yang telah diubah tersebut.
 ### Mapping Features
-Selanjutnya, memetakan `userID` dan `ISBN` ke dataframe yang berkaitan.
-Mengecek beberapa hal dalam data seperti jumlah user sebesar 92106, jumlah buku sebesar 2701145, kemudian mengubah nilai rating menjadi float.
-
-Tahap persiapan ini penting dilakukan agar data siap digunakan untuk pemodelan. Namun sebelumnya, kita perlu membagi data untuk training dan validasi terlebih dahulu yang akan kita pelajari di materi berikutnya.
-
+Selanjutnya, kedua variabel tadi akan disimpan ke variabel `user` dan `prodi` dan dilakukan pemetaan ke dataframe yang berkaitan. Langkah selanjutnya adalah mencari jumlah user, prodi, nilai minimum dan maksimum hasil rata-rata nilai tes mahasiswa. Hasilnya terdapat 1541 jumlah user dan jumlah prodi, 395.125 nilai min hasil rata-rata nilai tes, dan 758.0 nilai max hasil rata-rata nilai tes.
+Tahap tersebut penting dilakukan dalam pemodelan data karena memberikan pemahaman yang lebih mendalam tentang karakteristik data yang akan digunakan dalam analisis atau pemodelan selanjutnya
 ### Split Data Training and Validation
-Pertama kita mengacak dataset ini sebelum membagi data tersebut `sample(frac=1, random_state=42)`. Kemudian Membuat variabel x untuk mencocokkan data user dan books menjadi satu value. Lalu Membuat variabel y untuk membuat rating dari hasil Membagi menjadi 80% data train dan 20% data validasi.
+Tahap kali ini akan dilakukan beberapa tindakan. Pertama, dataframe `df` diacak menggunakan metode `.sample()` dengan menyertakan parameter `frac=1` untuk mengambil seluruh baris dan `random_state=42` untuk memastikan reproducibility. Kemudian, kolom 'user' dan 'prodi' dipisahkan sebagai fitur `x`, sementara kolom 'rata_rata_nilai' dinormalisasi ke rentang antara 0 dan 1 menggunakan formula min-max scaling. Data kemudian dibagi menjadi 80% data latih dan 20% data validasi. Hasil akhir dari pemrosesan ini adalah data fitur `x` dan target `y` yang siap untuk digunakan dalam proses training dengan data latih dan validasi yang terpisah sesuai dengan proporsi yang ditentukan.
 
 
 ## Model Development -Collaborative Filtering
-
-Model ini bekerja dengan mengidentifikasi buku-buku yang mirip dan tidak pernah dibeli konsumen dengan mempertimbangkan preferensi pengguna berdasarkan rating yang telah diberikan sebelumnya. Model ini menjadi solusi dalam menghasilkan sistem rekomendasi yang efektif dan efisien karena mempertimbangkan preferensi pengguna dan hanya hitungan detik dalam memberikan rekomendasi.
+Model Collaborative Filtering (CF) adalah pendekatan dalam sistem rekomendasi yang berfokus pada penggunaan perilaku pengguna terhadap item (produk atau layanan) serta perilaku pengguna lainnya untuk membuat rekomendasi. Model ini didasarkan pada ide bahwa pengguna yang memiliki preferensi atau perilaku serupa terhadap item-item tertentu cenderung memiliki preferensi yang serupa juga terhadap item lainnya. Pada projek ini model bekerja dengan menemukan jurusan-jurusan yang mirip dan tidak pernah diketahui oleh mahasiswa dengan mempertimbangkan preferensi user berdasarkan suatu nilai yang di input diawal. 
 
 ### Generate Class RecommenderNet
-Pada tahap ini, model menghitung skor kecocokan antara pengguna dan resto dengan teknik embedding. Pertama, kita melakukan proses embedding terhadap data user dan resto. Selanjutnya, lakukan operasi perkalian dot product antara embedding user dan resto. Selain itu, kita juga dapat menambahkan bias untuk setiap user dan resto. Skor kecocokan ditetapkan dalam skala [0,1] dengan fungsi aktivasi sigmoid. Kita membuat class RecommenderNet dengan [keras Model class](https://keras.io/api/models/model/). Kode class RecommenderNet ini terinspirasi dari tutorial dalam situs [Keras](https://keras.io/examples/structured_data/collaborative_filtering_movielens/) dengan beberapa adaptasi sesuai kasus yang sedang kita selesaikan.
+Pada tahap ini, kelas `RecommenderNet`akan didefinisikan sebagai model neural network untuk sistem rekomendasi. Model ini menggunakan embedding layers untuk merepresentasikan pengguna (mahasiswa) dan produk (prodi) dalam ruang fitur (embedding space). Setiap pengguna dan produk direpresentasikan sebagai vektor embedding dengan ukuran yang ditentukan oleh `embedding_size`. Embedding layers digunakan untuk mengekstraksi representasi vektor dari pengguna dan produk, sementara embedding bias layers digunakan untuk menangani bias yang terkait dengan setiap pengguna dan produk. Selanjutnya, dalam metode `call`, vektor embedding pengguna dan produk diambil dari embedding layers sesuai dengan input, kemudian dilakukan operasi dot product antara vektor pengguna dan produk. Hasilnya ditambahkan dengan bias pengguna dan bias produk, dan diaktifkan menggunakan fungsi sigmoid. Hasil akhirnya adalah probabilitas bahwa pengguna (mahasiswa) akan menyukai produk(prodi) tersebut.
 ### Complie Model
-Kita melakukan insiasai model menggunakan class RecommenderNet yang telah dibuat sebelumnya dengan variabel yang berisi jumlah user dan buku serta ukuran *embedding* yaitu 50. Setelah itu, melakukan *compile* model. Model ini menggunakan *Binary Crossentropy* untuk menghitung *loss function*, Adam (*Adaptive Moment Estimation*) sebagai *optimizer*, dan *root mean squared error* (RMSE) sebagai *metrics evaluation*.
+Pada tahap ini, model RecommenderNet yang telah didefinisikan sebelumnya akan dicompile melalui beberapa proses. Pertama, model diinisialisasi dengan menyediakan jumlah pengguna (num_user), jumlah produk (num_prodi), dan ukuran embedding (embedding_size) dibuat sebanyak 50 dan dijadikan argumen saat membuat objek model. Kemudian, model dikompilasi dengan menentukan fungsi kerugian (loss function), optimizer, dan metrik evaluasi yang akan digunakan selama pelatihan. Dalam hal ini, digunakan *BinaryCrossentropy* sebagai fungsi kerugian karena tugas ini adalah prediksi biner (pengguna menyukai atau tidak suka pada produk), Adam (*Adaptive Moment Estimation*) sebagai optimizer untuk mengoptimalkan fungsi kerugian, dan RootMeanSquaredError sebagai metrik untuk mengukur performa model selama pelatihan. Setelah kompilasi, model siap untuk dilatih dengan data
 ### Implement the Callbacks function
 Kita menggunakan fungsi `ReduceLROnPlateau()` dan `EarlyStopping()` untuk meningkatkan efektivitas dan efisiensi proses pelatihan model. Melalui *callbacks* dinamis ini relatif model dapat mengecilkan nilai *learning rate* (kecepatan belajar) seiring pertambahan *epochs* sehingga memudahkan model menemukan titik optimal (konvergen) dalam mengeneralisasi data.
-
+Pada tahap ini, dua callback didefinisikan untuk digunakan selama pelatihan model neural network. Pertama, ReduceLROnPlateau digunakan untuk mengurangi laju pembelajaran (learning rate) jika tidak terjadi peningkatan dalam nilai loss pada data validasi (val_loss) setelah beberapa epoch (patience). Faktor pengurangannya ditentukan oleh factor, sementara min_lr menentukan batas terendah untuk laju pembelajaran. Callback kedua, EarlyStopping, akan menghentikan pelatihan model jika tidak terjadi penurunan dalam nilai loss pada data validasi (val_loss) setelah beberapa epoch (patience). Hal ini membantu mencegah overfitting dan menghemat waktu pelatihan. restore_best_weights=True memastikan bahwa bobot model akan dikembalikan ke nilai terbaik saat pelatihan ketika pelatihan dihentikan.
 ### Training Model
-Setelah model telah dibuat, compile dan inisiasi callbacks akan dilakukan pelatihan model dengan fungsi `fit()`. Yang mana mengisi parameter `x`, `y`, `batch_size = 64`, `epochs = 100`, `validation_data = (x_val, y_val)` dan `callbacks = [reduce_lr, early_stop]`.
+Tahap ini adalah  pelatihan model neural network menggunakan metode `fit()` pada objek model yang telah dikompilasi sebelumnya. Data latih (`x_train` dan `y_train`) digunakan untuk melatih model dengan batch size sebesar 64 selama 100 epoch. Data validasi (`x_val` dan `y_val`) digunakan untuk memantau kinerja model selama pelatihan. Selama pelatihan, callback `reduce_lr` dan `early_stop` digunakan untuk mengurangi laju pembelajaran (learning rate) jika tidak terjadi peningkatan dalam nilai loss pada data validasi (val_loss) setelah beberapa epoch, serta untuk menghentikan pelatihan jika tidak terjadi penurunan dalam nilai loss pada data validasi (val_loss) setelah beberapa epoch. Hasil pelatihan disimpan dalam variabel `history` untuk analisis selanjutnya atau visualisasi.
 ### Presenting Top-N Recommendation
-Kita mulai dengan megambil sampel data kita untuk sebagai contoh. Setelah mendapatkan sampelnya kita membuat variabel terkait buku yang sudah pernah dibeli user. Kemudian kita juga membuat variabel terkait buku yang belum pernah dibeli user. Kemudian mempersiapkan datanya menjadi bentuk array sehingga dapat diprediksi model. Kemudian kita menggunakan model yang telah dilatih untuk memberikan prediksi lalu mengumpulkan hasil prediksi model. Kemudian kita menampilkan hasil kepada user dalam bentuk 2 hal. Pertama terkait 5 buku yang memiliki rating tertinggi yang diberikan user. Kedua terkait 10 buku yang belum pernah dibeli user dan diperkirakan akan digemari user berdasarkan pertimbangan preferensi user (rating), preferensi ini menggunakan nilai median agar dapat melihat nilai rating tengah atau nilai rating yang dapat mewakilkan buku tersebut.
+Pada tahap ini terdiri dari beberapa proses. Pertama, proses pengambilan sampel data sebagai target yang dicari.
+Setelah sampel didapatkan maka akan dibuat sebuah variabel terkait jurusan yang sudah pernah dipilih user sebelumnya dan variabel terkait jurusan yang belum pernah diketahui user. Selanjutnya data akan dipersiapkan menjadi bentuk array sehingga dapat digunakan model. Model dilakukan pelatihan untuk memprediksi kemudian 
+
+Kemudian kita menggunakan model yang telah dilatih untuk memberikan prediksi lalu mengumpulkan hasil prediksi model. Kemudian kita menampilkan hasil kepada user dalam bentuk 2 hal. Pertama terkait 5 buku yang memiliki rating tertinggi yang diberikan user. Kedua terkait 10 buku yang belum pernah dibeli user dan diperkirakan akan digemari user berdasarkan pertimbangan preferensi user (rating), preferensi ini menggunakan nilai median agar dapat melihat nilai rating tengah atau nilai rating yang dapat mewakilkan buku tersebut.
 
 Berikut hasil rekomendasi untuk user id `185233` :
 
