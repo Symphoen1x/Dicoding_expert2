@@ -12,14 +12,14 @@ Dapat diambil kesimpulan dari beberapa infromasi diatas bahwa sistem rekomendasi
 ## Business Understanding
 ### 1. Problem Statements
 Berdasarkan latar belakang yang telah diuraikan sebelumnya, sistem rekomendasi akan dikembangkan dalam bentuk model untuk menjawab dua permasalahan berikut:
-* Bagaimana  membuat sistem rekomendasi jurusan yang sesuai dengan keinginan para mahasiswa jika mereka ingin menyesuaikannya berdasarkan universitas yang mereka pilih? 
-* Dengan data rata-rata skor ujian yang dimiliki para mahasiswa, bagaimana model dapat merekomendasikan jurusan yang mungkin cocok dan belum pernah diketahui oleh mereka?
+* Bagaimana menciptakan sistem rekomendasi jurusan yang sesuai dengan preferensi mahasiswa berdasarkan kemiripan nama jurusan?
+* Dengan data rata-rata skor ujian yang dimiliki para mahasiswa, bagaimana cara merekomendasikan jurusan yang mungkin cocok dan belum pernah diketahui oleh mereka?
 ### 2. Goals
 Untuk menjawab pertanyaan tersebut, sebuah model sistem rekomendasi akan dibuat dengan tujuan atau goals sebagai berikut:
-* Menghasilkan sejumlah rekomendasi jurusan berdasarkan universitas yang dipilih sesuai keinginan para mahasiswa dengan teknik content-based filtering(CB).
+* Menghasilkan sejumlah rekomendasi jurusan yang sesuai dengan preferensi mahasiswa berdasarkan kemiripan nama jurusan dengan teknik content-based filtering(CB).
 * Menghasilkan sejumlah rekomendasi jurusan yang sesuai dengan rata-rata skor ujian para mahasiswa dan belum pernah diketahui sebelumnya dengan teknik collaborative filtering(CF).
 ### 3. Solution Statements
-Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutif untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan nama universitas yang disukai pengguna(mahasiswa). Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan **TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer**, kalkulasi tingkat kesamaan (similarity measure) dengan **cosine similarity**, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
+Dalam rangka mencapai tujuan sebelumnya, yaitu menggunakan **Content Based Filtering** dan **Collaborative Filtering**, kedua teknik dipilih karena efektif dan solutif untuk model sistem rekomendasi. Model dengan **Content Based Filtering** akan merekomendasikan nama jurusan atau program studi yang sesuai dengan preferensi mahasiswa berdasarkan kemiripan dengan nama jurusan yang dipilih. Pada tahap ini, proses yang dilakukan diantaranya, representasi fitur penting dengan **TF-IDF (Term Frequency - Inverse Document Frequency) Vertorizer**, kalkulasi tingkat kesamaan (similarity measure) dengan **cosine similarity**, dan  rekomendasi top-N jurusan berdasarkan kesamaan yang telah dihitung sebelumnya. Sedangkan, Model **Collaborative Filtering** akan merekomendasikan sejumlah top jurusan atau program studi kepada pengguna(mahasiswa) berdasarkan nilai rata-rata yang telah diberikan sebelumnya. Dari data nilai pengguna tersebut akan muncul nama jurusan dan nama universitas yang mirip dan belum pernah diketahui oleh pengguna sebelumnya.
 
 
 ## Data Understanding
@@ -56,62 +56,78 @@ Dataset universities menyimpan data-data yang berkaitan dengan infromasi univers
 ## 2. Exploratory Data Analysis (EDA)
 ### Dataset Universitas
 * Droping column
+
 Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_univ sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
 * Check Characteristic Dataset
+  
 Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada datset univ, semua variabel yang telah dicek tidak menampilkan permasalahan. Jadi bisa dikatakan dataset ini cukup aman dari sumber data.
 * Count Uniq Value
+  
 Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabel dalam dataset. Ini membantu dalam memahami variasi data dan distribusi nilai di dalamnya. Dengan menghitung nilai unik, kita dapat mengetahui seberapa bervariasi atau seberapa seragam data dalam suatu kolom. Pada kolom atau variabel universities, dataset menampilkan jumlah uniq dari beberapa variabel dengan keterangan jumlah uniq variabel id universitas dan nama universitas adalah 85.
 ### Dataset Program Studi
 * Droping column
+  
 Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_major sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
 * Check Characteristic Dataset
+  
 Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup  informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada dataset jurusan, semua variabel yang telah dicek juga tidak menampilkan permasalahan. Kembali lagi diambil kesimpulan bahwa dataset ini cukup aman dari sumber data.
 * Count Uniq Value
+  
 Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabel dalam dataset. Ini membantu dalam memahami variasi data dan distribusi nilai di dalamnya. Dengan menghitung nilai unik, kita dapat mengetahui seberapa bervariasi atau seberapa seragam data dalam suatu kolom. Pada variabel major ini, dataset menampilkan jumlah uniq dari beberapa variabel dengan keterangan jumlah uniq id universitas adalah 85, uniq id major sebanyak  3167, dan uniq kapasitas sejumlah 143 baris.
 ### Dataset Score Science
 * Droping column
+  
 Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah beberapa kolom duplikasi variabel lain sehingga tidak perlu digunakan untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
 * Check Characteristic Dataset
+  
 Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup melihat informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada dataset Score Science, semua variabel yang telah dicek juga tidak menampilkan permasalahan. Kembali lagi diambil kesimpulan bahwa dataset ini cukup aman dari sumber data.
 * Count Uniq Value
+  
 Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabel dalam dataset. Ini membantu dalam memahami variasi data dan distribusi nilai di dalamnya. Dengan menghitung nilai unik, kita dapat mengetahui seberapa bervariasi atau seberapa seragam data dalam suatu kolom. Pada variabel major ini, dataset menampilkan jumlah uniq dari beberapa variabel dengan keterangan jumlah uniq id_university adalah 80, uniq id major sebanyak  1546, dan uniq id_user, dan sejumlah 86570. Dari dua dataset sebelumnya, jika dicocokan dengan datset ini maka ada sedikit perbedaan terkait jumlah variabel id_university dan id_major. Untuk itu, datset akan dilakukan teknik data cleaning pada tahap selanjutnya guna mengatasi masalah missing value.
 * Count Mean of Specific Column
-Karena syarat terkait kualifikasi nilai ujian yang diminta adalah rata-rata dari beberapa tes atau ujian yang ada maka membuat kolom batu hasil rata-rata nilai ujian dibutuhkan.
+  
+Karena syarat terkait kualifikasi nilai ujian yang diminta adalah rata-rata dari beberapa tes atau ujian maka  kolom baru yang berisi hasil rata-rata nilai ujian dari beberapa subtes akan dibuat. Beberapa subtes tersebut, yaitu Biologi(Bio),	Fisika(Fis),	Kimia(Kim),	Kemampuan Membaca dan Menulis(KMB),	Kemampuan Penalaran Umum(KPU),	Kemampuan Kuantitatif(Kua),	Matematika(Mat), dan	Pengetahuan dan Pemahaman Umum(PPU).
 ## Merge Third Column -Dataset Final
-
+Tahap kali ini akan dilakukan percobaan menggabungkan ketiga dataset, yaitu major, score science dan universities dengan fungsi merge(). Percobaan pertama adalah penggabungan antara dataset major dengan science score berdasarkan kolom id_major. Kemudian dilanjut menggabungkan dataset hasil percobaan pertama dengan universities berdasarkan kolom id_university dengan fungsi merge(). Alasan dari penggabungan ketiga dataset tersebut agar informasi penting dari ketiga datset yang akan digunakan dapat disatukan secara lengkap.
 ### Filtering Irrelevant Values
+Pada tahap ini, beberapa value dari kolom type mengandung jenis yang berbeda dengan tujuan bisnis, yaitu value *humanities*. Karena fokus di projek ini adalah data sampel jurusan saintek maka value tersebut akan dilakukan peng-fileteran dengan fungsi isin().
 ### Removing Irrelevant Values
+Pada tahap ini, penghapusan beberapa variabel yang kurang relevan dan telah diketahui dari tahap sebelumnya akan di hapus. 
 ### Overcoming Missing Value
+Setelah proses penggabungan Dataset, banyak baris yang menjadi missing value. Hal ini disebabkan adanya perbedaan baris data dari masing-masing dataset sehingga menimbulkan hilangnya beberapa baris data sehingga teridentifikasi missing value. Beberapa variabel yang mengandung missing value, yaitu type, major_name, capacity, id_university, dan university_name. Hanya variabel id_major, id_user, dan rata-rata nilai saja yang teridentifikasi memiliki 0 missing value. Fungsi dropna akan digunakan dalam mengatasi missing value. Alasan dilakukan tahap ini agar ketika pelatihan model nanti tidak terdapat informasi yang hilang sehingga model yang dihasilkan lebih optimal.
 ### Dropping Duplicated Columns
+Proses "Dropping Duplicated Columns" dilakukan untuk menghapus kolom-kolom yang memiliki nilai yang sama di setiap barisnya. Tujuan utamanya adalah untuk membersihkan data dan menghilangkan redundansi, sehingga memungkinkan analisis data yang lebih akurat dan efisien. Kali ini variabel id_major terdeteksi mengandung duplikat data.
 ### Visualisation of Sample Variable Dataset Final
-
-## Data Preparation - Umum :
-
-### Filtering Irrelevant Values
-
-### Removing Irrelevant Values
-
-### Overcoming Missing Value
-Melalui proses penggabungan Data menimbulkan banyak baris yang menjadi missing value. Hal ini disebabkan adanya perbedaan identitas data buku sehingga menimbulkan diantara salah satu hilang (entah pada books atau rating) sehinga teridentifikasi missing value. Terdapat banyak missing value pada sebagian besar fitur. Hanya fitur `User-ID`, `ISBN`, dan `Book-Rating` atau `Book_Rating` saja yang memiliki 0 missing value. Selain itu, `Book-Title`, `Book-Author`, `Year-Of-Publication`, `Publisher`, `Image-URL-S`, `Image-URL-M`, dan `Image-URL-L`. Selanjutnya, kita membuang baris-baris yang meiliki missing value dengan fungsi `dropna()`. Alasan dilakukan proses ini agar ketika proses pelatihan model tidak terdapat informasi yang hilang sehingga menghasilkan model yang lebih optimal.
-### Dropping Duplicated Columns
-
-
+Pada tahap ini, visualisasi dari dataset akhir akan dilakukan guna menemukan sedikit infromasi mengenai jurusan apa yang memiliki peminat tertinggi dari keseluruhan jurusan yang ada. Tujuanya agar nanti bisa dijadikan bahan percobaan untuk mengetahui beberapa rekomendasi jurusan dari data jurusan dengan peminat tertinggi tersebut.  Proses ini menggunakan bantuan library Matplotlib. Terlihat dari hasil visualisasi EDA tersebut, ada 3 top jurusan dengan jumlah peminat yang sama. Salah satunya adalah teknik sipil. Maka value tersebut akan dijadikan bahan percobaan ditahap selanjutnya.
 ## Data Preparation - Content Based Filtering
 ### Convert Series-List Data
-Proses ini dilakukan agar data yang awalnya berbentuk data frame berbentuk list. Proses ini dilakukan karena persyaratan input TF-IDF Vectorizer membutuhkan list. Proses ini menggunakan fungsi `tolist()`.
-
+Tujuan dari proses ini untuk mengubah bentuk data yang awalnya berbentuk dataframe menjadi berbentuk list sehingga persyaratan pada input tahap TF-IDF Vectorizer terpenuhi. Proses ini akan menggunakan fungsi `tolist().
 ### Creating a Dictionary
-untuk menentukan pasangan key-value pada data ISBN, Author, dan book_title yang telah kita siapkan sebelumnya. Proses ini menggunakan fungsi `DataFrame({})`.
+Tujuan dari proses ini untuk membuat dictionary dari beberapa variabel dataset final. Proses ini akan menggunakan fungsi *DataFrame()* sebagai alat pembuatanya.
 
 ## Model Development -Content Based Filtering
+Ide dari sistem rekomendasi content based filtering(CB) adalah merokomendasikan suatu item yang menggunakan deskripsi dari item tersebut. Cara kerja dari model ini dengan mempelajari minat pengguna baru berdasarkan item yang mirip dengan yang disukai pengguna di masa lalu atau sedang dilihat di masa kini. Semakin banyak informasi yang diberikan pengguna maka akan semakin baik akurasi sistem rekomendasi
 
-Model ini bekerja dengan melihat kemiripan suatu konten, dalam kasus ini konten yang dimaksud adalah judul buku. Model berusaha menghitung tingkat kemiripan antar judul buku dan memberikan kepada user tingkat kemiripan yang paling tinggi. Model ini menjadi solusi dalam menghasilkan sistem rekomendasi yang efektif dan efisien karena mempertimbangkan konten user dan hanya dalam hitungan detik dalam memberikan rekomendasi.
+Kelebihan teknik Content Based Filtering:
+* Transparansi: Rekomendasi yang diberikan dapat dijelaskan dengan menganalisis fitur atau konten dari item yang disukai pengguna.
+  
+* Tidak Memerlukan Data dari Pengguna Lain: Rekomendasi dihasilkan hanya berdasarkan preferensi dan riwayat pengguna itu sendiri, sehingga tidak memerlukan data dari pengguna lain.
+  
+* Dapat Menangani Data Baru: Teknik ini dapat memberikan rekomendasi untuk item baru yang belum dirating oleh pengguna lain, selama item tersebut memiliki fitur atau konten yang serupa dengan item yang disukai pengguna.
+
+Kekurangan teknik Content Based Filtering:
+* Masalah Keterbatasan Analisis Konten: Analisis konten yang terbatas dapat menyebabkan rekomendasi yang kurang akurat, terutama untuk item-item yang memiliki fitur atau konten yang kompleks dan sulit dianalisis secara otomatis.
+  
+* Tidak Dapat Menangkap Preferensi yang Berubah: Teknik ini hanya merekomendasikan item-item yang serupa dengan item yang telah disukai pengguna di masa lalu, sehingga tidak dapat menangkap perubahan preferensi pengguna.
+  
+* Masalah Keberagaman Rekomendasi: Rekomendasi cenderung homogen dan kurang beragam karena hanya merekomendasikan item-item yang serupa dengan yang telah disukai pengguna.
 ### TF-IDF Vectorizer
-Teknik penilaian ini disebut TF-IDF, kepanjangan dari *Term Frequency-Inverse Document Frequency*. Ia bertujuan untuk mengukur seberapa penting suatu kata terhadap kata-kata lain dalam dokumen. Secara matematis, TF-IDF didefinisikan dengan dua besaran, yaitu TF dan IDF. TF (*Term Frequency*) mengukur frekuensi atau seberapa sering suatu kata atau term muncul dalam teks tertentu. Teks yang berbeda dalam dokumen mungkin memiliki panjang yang berbeda, tergantung dari panjang dokumen. Oleh karena itu, kita melakukan normalisasi dengan membagi jumlah kemunculan terhadap panjang dokumen. Proses ini menggunakan fungsi ` TfidfVectorizer()`. Kita menggunakan fitur judul buku (`book_title`) karena dirasa lebih relevan dalam memberikan rekomendasi (input `.fit()`)berdasarkan kemiripan, cenderung judul yang mirip relatif memiliki isi buku yang serupa pula. Berbeda dengan yang lainnya seperti nama penulis, misal nama penulis Joni dengan Jonis tentu lebih sering berbeda dari segi konten, judul dsb. Selanjutnya dilakukan fit baru ditransformasikan ke bentuk matrix dengan fungsi `fit_transform()` sehingga menghasilkan ukuran matrix sebesar 20000 adalah ukuran data dan 15924 adalah jenis Judul Buku. Setelah itu, untuk menghasilkan vektor tf-idf dalam bentuk matriks, kita menggunakan fungsi `todense()`. Proses ini diperlukan untuk dapat diproses ketahapan selanjutnya yaitu menghitung tingkat kemiripan.
+Metode evaluasi ini, yang dikenal sebagai TF-IDF (Term Frequency-Inverse Document Frequency), bertujuan untuk menilai signifikansi suatu kata dalam konteks kata-kata lain dalam sebuah dokumen. Matematisnya, TF-IDF terdiri dari dua faktor: TF (Term Frequency) dan IDF (Inverse Document Frequency). TF mengukur seberapa sering sebuah kata muncul dalam sebuah teks, sementara IDF mengukur seberapa umum kata tersebut di seluruh dokumen. Panjang teks dapat bervariasi antar dokumen, mempengaruhi cara perhitungan TF dan IDF. Maka dari itu, normalisasi akan dilakukan dengan membagi jumlah kemunculan terhadap panjang dokumen. Proses ini menggunakan fungsi ` TfidfVectorizer()`. Kemudian variabel *major_name* akan digunakan dalam perhitungan idf, mapping array dari fitur index integer ke fitur nama, dan  transfromasi fit ke bentuk matrix. Hasilnya adalah sebuah matrix dengan ukuran sebesar 1541 ukuran data x 220 jenis nama jurusan. Selanjutnya matrix dibentuk dengan menggunakan fungsi `todense()`. Proses ini bertujuan sebagai bahan untuk dapat diproses ke tahap berikutnya, yaitu menghitung tingkat kemiripan(Cosine Similarity)
 ### Cosine Similarity
 
-Cosine similarity mengukur kesamaan antara dua vektor dan menentukan apakah kedua vektor tersebut menunjuk ke arah yang sama. Ia menghitung sudut cosinus antara dua vektor. Semakin kecil sudut cosinus, semakin besar nilai cosine similarity. Metrik ini sering digunakan untuk mengukur kesamaan dokumen dalam analisis teks. Sebagai contoh, dalam studi kasus ini, cosine similarity digunakan untuk mengukur kesamaan nama judul buku.
-Proses ini menggunakan fungsi `cosine_similarity()` dari pustaka *sklearn*. Pada tahapan ini, kita menghitung *cosine similarity* dataframe `tfidf_matrix` yang kita peroleh pada tahapan sebelumnya. Dengan satu baris kode untuk memanggil fungsi cosine similarity dari library sklearn, kita telah berhasil menghitung kesamaan (*similarity*) antar restoran. Kode di atas menghasilkan keluaran berupa matriks kesamaan dalam bentuk array.
+Kesamaan kosinus mengukur kesamaan antara dua vektor dan menentukan apakah mereka mengarah ke arah yang sama. Ini menghitung sudut kosinus antara dua vektor. Semakin kecil sudut kosinusnya, semakin besar nilai kesamaan kosinus. Metrik ini sering digunakan untuk mengukur kesamaan dokumen dalam analisis teks. Dalam kasus ini, kesamaan kosinus digunakan untuk menilai kesamaan antara nama judul buku.
+
+Proses ini menggunakan fungsi `cosine_similarity()` dari pustaka *sklearn*. Pada tahap ini, kita menghitung kesamaan kosinus dari dataframe `tfidf_matrix` yang telah kita peroleh pada tahap sebelumnya. Dengan hanya satu baris kode untuk memanggil fungsi kesamaan kosinus dari pustaka sklearn, kita berhasil menghitung kesamaan antara restoran. Kode di atas menghasilkan keluaran dalam bentuk matriks kesamaan dalam format array.
 
 ### Presenting Top-N Recommendation
 Kita membuat fungsi yang dapat memberikan hasil rekomendasi. Fungai ini memiliki parameter yang terdiri dari wajib di isi dan tidak. Parameter yang wajib di isi adalah ISBN dan selain itu sudah terdapat nilai *default*. Parameter yang memiliki nilai *default* seperti similiraity_data yang menggunakan variabel yang telah dihitung pada tahap sebelumnya dengan nama `cosine_sim_df`, lalu parameter items yang akan memberikan hasil berupa informasi `ISBN`, `book_author`, dan `book_title`, kemudian parameter k yang merujuk pada berapa banyak rekomendasi yang ingin diberikan, secara *default* adalah 5. Cara kerja fungsi ini adalah Mengambil data dengan menggunakan `argpartition()` untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan, kemudian mengubah dataframe menjadi numpy dan membuat range yang terdiri dari `range(start, stop, step)`. Setelah itu, mengambil data dengan similarity terbesar dari index yang ada dan menghapus nama buku yang dimasukan oleh pengguna sehingga tidak merekomendasikan nama buku yang sama dengan yang dimasukan pengguna melalui fungsi `drop()`. Setelah itu akan mengembalikan dalam bentuk dataframe.
