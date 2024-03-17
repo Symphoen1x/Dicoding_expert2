@@ -126,17 +126,12 @@ Metode evaluasi ini, yang dikenal sebagai TF-IDF (Term Frequency-Inverse Documen
 Tujuan dari tahap Kesamaan cosinus adalah mengukur kesamaan antara dua vektor dan menentukan apakah mereka mengarah ke arah yang sama. Tahap kesamaan kosinus penting dalam model content-based filtering karena memberikan cara yang efektif untuk mengukur kesamaan antara dua vektor yang mewakili item-item dengan menghitung sudut kosinusnya. Semakin kecil sudut cosinusnya, semakin besar nilai kesamaan cosinus. Metrik ini sering digunakan untuk mengukur kesamaan dokumen dalam analisis teks. Sebelumnya, dataframe dibuat dengan nama `tfidf_matrix' untuk menghitung kesamaan cosinus antar id jurusan. Proses tersebut menggunakan fungsi `cosine_similarity()`. Hasil akhir dari proses ini adalah dataframe baru dengan nama 'df' yang berisi hasil hitung kesamaan cosinus antara variabel id major dengan id major.
 
 ### Presenting Top-N Recommendation
-Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat dengan beberapa parameter yang terdiri dari parameter wajib 'id_major'(jurusan yang ingin dicari rekomendasinya) dan sisanya opsional, yaitu 'similarity_data'(Matriks kesamaan kosinus antar-jurusan yang telah dihitung sebelumnya), 'items'(DataFrame yang berisi informasi mengenai setiap jurusan, termasuk ID jurusan, nama universitas, dan nama jurusan), dan 'k'(Jumlah rekomendasi yang ingin diberikan. Ini adalah parameter opsional dengan nilai default 5). Fungsi ini berkerja dengan mengambil data melalui menggunakan fungsi `argpartition()` untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan, selanjutnya melakukan pengubahan data menjadi numpy dan membuat range yang terdiri dari `range(start, stop, step)`. Setelah itu, data akan diambil pada similarity terbesar dari index yang ada. Terdapat pula langkah menghapus id jurusan sehingga model tidak merekomendasikan nama jurusan yang sama dengan yang dimasukan pengguna/user melalui fungsi `drop()`. Hasil akhir dari fungsi ini adalah mengembalikan sebuah dataframe yang berisi 5 rekomendasi jurusan.
-
-Berikut hasil rekomendasi dari jurusan dengan target id jurusan `0155061224` :
-|-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|:---------------|:-------------|:-------------|:-----------|:-------------|--------------:|
-
+Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat dengan beberapa parameter yang terdiri dari parameter wajib 'id_major'(jurusan yang ingin dicari rekomendasinya) dan sisanya opsional, yaitu 'similarity_data'(Matriks kesamaan kosinus antar-jurusan yang telah dihitung sebelumnya), 'items'(DataFrame yang berisi informasi mengenai setiap jurusan, termasuk ID jurusan, nama universitas, dan nama jurusan), dan 'k'(Jumlah rekomendasi yang ingin diberikan. Ini adalah parameter opsional dengan nilai default 5). Fungsi ini berkerja dengan mengambil data melalui menggunakan fungsi `argpartition()` untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan, selanjutnya melakukan pengubahan data menjadi numpy dan membuat range yang terdiri dari `range(start, stop, step)`. Setelah itu, data akan diambil pada similarity terbesar dari index yang ada. Terdapat pula langkah menghapus id jurusan sehingga model tidak merekomendasikan nama jurusan yang sama dengan yang dimasukan pengguna/user melalui fungsi `drop()`. Hasil akhir dari fungsi ini adalah mengembalikan sebuah dataframe yang berisi 5 rekomendasi jurusan. Berikut tampilan input user dan hasil rekomendasi berdasarkan input tersebut:
 - **Tabel 1. Data Jurusan dengan Id `3611476`** :
  
 |index|id\_major|university\_name|major\_name|
 |------:|------:|-----------------:|:------------|
 |118|3611476|UNIVERSITAS GADJAH MADA|HIGIENE GIGI|
-
 
 - **Tabel 2. 5 Rekomendasi Jurusan, Berdasarkan Target Jurusan dengan Id `3611476`**
 
@@ -148,7 +143,7 @@ Berikut hasil rekomendasi dari jurusan dengan target id jurusan `0155061224` :
 |3|3511212|UNIVERSITAS JENDERAL SOEDIRMAN|PENDIDIKAN DOKTER GIGI|
 |4|1711075|UNIVERSITAS SRIWIJAYA|PENDIDIKAN DOKTER GIGI|
 
-Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI menghasilkan 5 jurusan yang serupa dengan keyword *gigi* dan *pendidikan*.
+Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI yang ada pada tabel 1 menghasilkan 5 jurusan yang serupa dengan keyword *gigi* dan *pendidikan*.
 
 ## Data Preparation - Collaborative Filtering
 
@@ -160,9 +155,18 @@ Tahap tersebut penting dilakukan dalam pemodelan data karena memberikan pemahama
 ### Split Data Training and Validation
 Tahap kali ini akan dilakukan beberapa tindakan. Pertama, dataframe `df` diacak menggunakan metode `.sample()` dengan menyertakan parameter `frac=1` untuk mengambil seluruh baris dan `random_state=42` untuk memastikan reproducibility. Kemudian, kolom 'user' dan 'prodi' dipisahkan sebagai fitur `x`, sementara kolom 'rata_rata_nilai' dinormalisasi ke rentang antara 0 dan 1 menggunakan formula min-max scaling. Data kemudian dibagi menjadi 80% data latih dan 20% data validasi. Hasil akhir dari pemrosesan ini adalah data fitur `x` dan target `y` yang siap untuk digunakan dalam proses training dengan data latih dan validasi yang terpisah sesuai dengan proporsi yang ditentukan.
 
-
 ## Model Development -Collaborative Filtering
 Model Collaborative Filtering (CF) adalah pendekatan dalam sistem rekomendasi yang berfokus pada penggunaan perilaku pengguna terhadap item (produk atau layanan) serta perilaku pengguna lainnya untuk membuat rekomendasi. Model ini didasarkan pada ide bahwa pengguna yang memiliki preferensi atau perilaku serupa terhadap item-item tertentu cenderung memiliki preferensi yang serupa juga terhadap item lainnya. Pada projek ini model bekerja dengan menemukan jurusan-jurusan yang mirip dan tidak pernah diketahui oleh mahasiswa dengan mempertimbangkan preferensi user berdasarkan suatu nilai yang di input diawal. 
+
+**Kelebihan teknik Collaborative Filtering:**
+* Tidak memerlukan informasi item: Collaborative filtering tidak memerlukan analisis konten atau metadata item, melainkan hanya menggunakan data interaksi pengguna (seperti rating atau perilaku) untuk memberikan rekomendasi.
+* Dapat menemukan insight tersembunyi: Metode ini dapat menemukan pola atau hubungan tersembunyi antara pengguna dan item yang mungkin tidak terlihat secara eksplisit.
+* Menggunakan sumber informasi yang kaya: Collaborative filtering memanfaatkan data interaksi dari seluruh komunitas pengguna, yang merupakan sumber informasi yang kaya dan sulit untuk diperoleh dengan cara lain.
+  
+**Kekurangan teknik Collaborative Filtering:**
+* Masalah data jarang (sparsity): Pada dataset dengan banyak item dan sedikit interaksi, collaborative filtering dapat mengalami masalah dalam memberikan rekomendasi yang akurat.
+* Masalah cold start: Metode ini sulit memberikan rekomendasi yang baik untuk pengguna atau item baru yang belum memiliki data interaksi sebelumnya.
+* Escalasi preferensi populer: Collaborative filtering cenderung merekomendasikan item populer yang disukai oleh banyak pengguna, sehingga mengabaikan item niche atau kurang populer.
 
 ### Generate Class RecommenderNet
 Pada tahap ini, kelas `RecommenderNet`akan didefinisikan sebagai model neural network untuk sistem rekomendasi. Model ini menggunakan embedding layers untuk merepresentasikan pengguna (mahasiswa) dan produk (prodi) dalam ruang fitur (embedding space). Setiap pengguna dan produk direpresentasikan sebagai vektor embedding dengan ukuran yang ditentukan oleh `embedding_size`. Embedding layers digunakan untuk mengekstraksi representasi vektor dari pengguna dan produk, sementara embedding bias layers digunakan untuk menangani bias yang terkait dengan setiap pengguna dan produk. Selanjutnya, dalam metode `call`, vektor embedding pengguna dan produk diambil dari embedding layers sesuai dengan input, kemudian dilakukan operasi dot product antara vektor pengguna dan produk. Hasilnya ditambahkan dengan bias pengguna dan bias produk, dan diaktifkan menggunakan fungsi sigmoid. Hasil akhirnya adalah probabilitas bahwa pengguna (mahasiswa) akan menyukai produk(prodi) tersebut.
@@ -174,59 +178,30 @@ Pada tahap ini, dua callback didefinisikan untuk digunakan selama pelatihan mode
 ### Training Model
 Tahap ini adalah  pelatihan model neural network menggunakan metode `fit()` pada objek model yang telah dikompilasi sebelumnya. Data latih (`x_train` dan `y_train`) digunakan untuk melatih model dengan batch size sebesar 64 selama 100 epoch. Data validasi (`x_val` dan `y_val`) digunakan untuk memantau kinerja model selama pelatihan. Selama pelatihan, callback `reduce_lr` dan `early_stop` digunakan untuk mengurangi laju pembelajaran (learning rate) jika tidak terjadi peningkatan dalam nilai loss pada data validasi (val_loss) setelah beberapa epoch, serta untuk menghentikan pelatihan jika tidak terjadi penurunan dalam nilai loss pada data validasi (val_loss) setelah beberapa epoch. Hasil pelatihan disimpan dalam variabel `history` untuk analisis selanjutnya atau visualisasi.
 ### Presenting Top-N Recommendation
-Pada tahap ini terdiri dari beberapa proses. Pertama, proses pengambilan sampel data sebagai target yang dicari.
-Setelah sampel didapatkan maka akan dibuat sebuah variabel terkait jurusan yang sudah pernah dipilih user sebelumnya dan variabel terkait jurusan yang belum pernah diketahui user. Selanjutnya data akan dipersiapkan menjadi bentuk array sehingga dapat digunakan model. Model dilakukan pelatihan untuk memprediksi kemudian 
+Pada tahap ini terdiri dari beberapa proses. Pertama, proses pengambilan sampel data secara acak dari dataframe 'df' dan mengekstraksi semua program studi (prodi) yang dipilih oleh pengguna tersebut. Kemudian, prodi-prodi yang tidak dipilih oleh pengguna tersebut diidentifikasi dan disaring untuk memastikan bahwa hanya prodi-prodi yang ada dalam kamus encode prodi yang dipertimbangkan. Selanjutnya, dilakukan pembuatan array yang berisi ID pengguna yang diulang sebanyak jumlah prodi yang tidak dipilih, serta ID prodi-prodi yang tidak dipilih. Array tersebut kemudian digunakan untuk memprediksi skor (rating/nilai pengguna) untuk setiap pasangan pengguna-prodi, dan 10 prodi dengan skor tertinggi dipilih sebagai rekomendasi. Rekomendasi tersebut kemudian ditampilkan bersama dengan prodi-prodi yang telah dipilih oleh pengguna untuk memberikan konteks lebih lanjut tentang preferensi pengguna tersebut.
 
-Kemudian kita menggunakan model yang telah dilatih untuk memberikan prediksi lalu mengumpulkan hasil prediksi model. Kemudian kita menampilkan hasil kepada user dalam bentuk 2 hal. Pertama terkait 5 buku yang memiliki rating tertinggi yang diberikan user. Kedua terkait 10 buku yang belum pernah dibeli user dan diperkirakan akan digemari user berdasarkan pertimbangan preferensi user (rating), preferensi ini menggunakan nilai median agar dapat melihat nilai rating tengah atau nilai rating yang dapat mewakilkan buku tersebut.
+Selanjutnya, terdapat beberapa langkah untuk memberikan rekomendasi program studi (prodi) kepada pengguna berdasarkan model collaborative filtering yang telah dilatih sebelumnya. Pertama, model digunakan untuk memprediksi skor (rating) untuk setiap pasangan pengguna-prodi yang tidak dipilih sebelumnya oleh pengguna. Kemudian, 10 prodi dengan skor tertinggi dipilih sebagai rekomendasi, dan ID prodi tersebut diubah kembali menjadi nama prodi. Selanjutnya, kode menampilkan prodi-prodi yang telah dipilih oleh pengguna, bersama dengan nama universitasnya, sebagai pembanding untuk rekomendasi yang diberikan. Terakhir, daftar 10 prodi yang direkomendasikan oleh model ditampilkan bersama dengan nama universitasnya untuk membantu pengguna dalam pengambilan keputusan. Proses ini memberikan pengguna gambaran yang lebih lengkap tentang pilihan prodi yang mungkin sesuai dengan preferensi mereka, serta memberikan alternatif yang relevan berdasarkan model collaborative filtering yang telah dilatih sebelumnya.
 
-Berikut hasil rekomendasi untuk user id `185233` :
+**Tabel 3. Input untuk user dengan id `8705` dan jurusan 'Fisika'** :
+|index|id\_major|id\_user|rata\_rata\_nilai|type|major\_name|capacity|id\_university|university\_name|user|prodi|
+|-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|
+|1529|3821016|8705|631\.5|science|FISIKA|48\.0|382\.0|INSTITUT TEKNOLOGI SEPULUH NOPEMBER|656|656|
 
-- **Books with High Ratings from User**
+**Tabel 4. Hasil rekomendasi untuk user dengan id `8705` dan jurusan 'Fisika'** :
+|index|id\_major|id\_user|rata\_rata\_nilai|type|major\_name|capacity|id\_university|university\_name|user|prodi|
+|-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|
+|294|3611445|1544|619\.375|science|TEKNIK PERTANIAN|45\.0|361\.0|UNIVERSITAS GADJAH MADA|239|239|
+|139|3551132|808|569\.375|science|PERIKANAN TANGKAP|50\.0|355\.0|UNIVERSITAS DIPONEGORO|123|123|
+|540|3341085|2760|649\.0|science|BIOLOGI|21\.0|334\.0|UNIVERSITAS PENDIDIKAN INDONESIA|366|366|
+|16|3551027|110|661\.875|science|KEDOKTERAN|85\.0|355\.0|UNIVERSITAS DIPONEGORO|15|15|
+|281|3551205|1463|624\.125|science|TEKNIK KIMIA|113\.0|355\.0|UNIVERSITAS DIPONEGORO|231|231|
+|1319|3731203|7951|608\.0|science|TEKNIK ELEKTRO|45\.0|373\.0|UNIVERSITAS NEGERI MALANG|617|617|
+|91|3551155|491|608\.25|science|OCEANOGRAFI  |60\.0|355\.0|UNIVERSITAS DIPONEGORO|82|82|
+|63|3551221|335|653\.75|science|PERENCANAAN WILAYAH DAN KOTA|79\.0|355\.0|UNIVERSITAS DIPONEGORO|57|57|
+|748|3611414|4245|621\.125|science|TEKNIK NUKLIR|30\.0|361\.0|UNIVERSITAS GADJAH MADA|450|450|
+|321|3551236|1676|648\.25|science|TEKNIK INDUSTRI|75\.0|355\.0|UNIVERSITAS DIPONEGORO|257|257|
 
-| No | ISBN | Book Author | Book Title | Rating |
-|--|---|:---:|---|---|
-| 1. | 043935806X | J. K. Rowling | Harry Potter and the Order of the Phoenix (Book 5) | 10.0 |
-| 2. | 0307010368 | Little Golden Staff | Snow White and the Seven Dwarfs | 9.0 |
-| 3. | 0812550544 | Michael Norman | Haunted America (Haunted America) | 10.0 |
-| 4. | 0451169530 | Michael Norman | The Stand: Complete and Uncut | 10.0 |
-| 5. | 078686382X | Deanna F. Cook | Disneys Family Cookbk-OS | 10.0 |
-
-
-- **Top 10 Books Recommendation**
-
-| No | ISBN | Book Author | Book Title | Rating |
-|--|---|:---:|---|---|
-| 1. | 0091842050 | Bradley Trevor Greive | The Blue Day Book: A Lesson in Cheering Yourself Up | 10.0 |
-| 2. | 0394800389 | Dr. Seuss | Fox in Socks (I Can Read It All by Myself Beginner Books) | 10.0 |
-| 3. | 0823401898 | Florence Parry Heide | The Shrinking of Treehorn | 10.0 |
-| 4. | 1563891336 | Neil Gaiman | Death: The High Cost of Living | 10.0 |
-| 5. | 3522128001 | Michael Ende | Die unendliche Geschichte: Von A bis Z | 10.0 |
-| 6. | 0920668364 | Robert Munsch | Love You Forever | 9.5 |
-| 7. | 0316779059 | Martha Sears | The Baby Book: Everything You Need to Know About Your Baby from Birth to Age Two | 9.0 |
-| 8. | 1844262553 | Paul Vincent | Free | 9.0 |
-| 9. | 2205054252 | Larcenet | Le Combat ordinaire, tome 1 | 9.0 |
-| 10. | 0064440508 | Else Holmelund Minarik | A Kiss for Little Bear | 8.5 |
-
-
-
-## Kelebihan dan Kekurangan Setiap Pendekatan
-
-
-### Content Based Filtering
-
-- **Kelebihan** : Model dapat memberikan rekomendasi yang serupa dengan buku yang telah kita beli sehingga relatif dapat membeli buku yang tepat dan telah terbukti diminati kita karena berdasarkan kemiripan judul buku di masa lalu.
-
-- **Kekurangan** : Cenderung model hanya memberikan rekomendasi buku yang mirip atau relatif bukan buku yang unik.
-
-
-### Collaborative Filtering
-
-- **Kelebihan** : Model dapat memberikan rekomendasi yang lebih unik karena mempertimbangkan segi preferensi (rating) bukan konten yang pernah dibeli pengguna dan relatif masih disukai oleh konsumen karena memiilki rating serupa dengan buku yang pernah dibeli.
-
-- **Kekurangan** : Cenderung model hanya memberikan rekomendasi buku unik dan kemungkinan tidak disukai konsumen karena belum terbukti diminati sebab tidak berdasarkan kemiripan judul buku di masa lalu.
-
-
-
+Dari gambar di atas terlihat sistem menampilkan jurusan dengan skor tertinggi dari pemberian user. Sistem rekomendasi menampilkan 10 rekomendasi jurusan yang belum pernah diketahui user dan memiliki skor yang berada dibawah hingga diatas user. Dengan demikian, user dapat melihat prodi apa yang sesuai dengan skor mereka berdasarkan rekomendasi minimum skor dan maksimum skor.
 ## Evaluation
 
 ### 1. Model Content Based Filtering
