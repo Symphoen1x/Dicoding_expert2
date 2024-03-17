@@ -3,12 +3,12 @@
 ## Project Overview
   Dalam menempuh pendidikan ke jenjang perguruan tinggi, bukanlah suatu perjalanan yang mudah untuk dihadapi, melainkan suatu perjalanan yang di dalamnya para mahasiswa akan menemui berbagai tantangan dan rintangan. Salah satu hal yang sering menjadi masalah di bagian awal adalah tidak mudahnya dalam memilih jurusan yang sesuai dengan diri sehingga banyak mahasiswa yang mengalami salah jurusan. Berdasarkan penelitian dari Youthmanual tentang profil mahasiswa di seluruh Indonesia bahwa hasil penelitian menunjukan fakta yang cukup menarik, yakni 92% mahasiswa tidak tahu akan menjadi apa kedepannya dan 45% mahasiswa merasa salah mengambil jurusan [[1]](http://www.skystarventures.com/youthmanual-angka-siswa-yang-salah-pilih-jurusan-masih-tinggi/). Penilitian lain dari Data Indonesia Career Center Network (ICCN) tahun 2017 mengungkapkan demikian bawha lebih dari 71,7% orang bekerja tidak linier dengan pendidikannya dan lebih dari 87% pelajar dan mahasiswa tidak sesuai dengan minatnya ketika mengambil jurusan di dunia pendidikan [[2]](https://indonesiacareercenter.id/). Kedua penelitian tersebut menunjukan bahwa para mahasiswa memiliki masalah dalam memilih jurusan yang disebabkan oleh beberapa faktor. Salah satu faktor yang bisa menjadi penyebab dari masalah tersebut adalah kurangnya eskplorasi data atau infromasi dari setiap jurusan bagi beberapa mahasiswa. Disamping itu, era saat ini yang penuh dengan infromasi dari berbagai sumber membuat beberapa mahasiswa bingung untuk memilih sumber mana yang akan dijadikan patokan dalam mengeskplorasi data atau informasi terkait program studi.
   
-  Maka dari itu, sebuah sistem rekomendasi (recommendation system) diperlukan agar dapat memberikan rekomendasi jurusan masuk perguruan tinggi berdasarkan ketertarikan dan kebutukan dalam pencarian referensi. Dalam sistem rekomendasi, algoritma yang biasanya digunakan adalah content based filtering(CB) dan collaborative filtering (CF). Ide dari sistem rekomendasi content based filtering(CB) adalah merokomendasikan suatu item yang menggunakan deskripsi dari item tersebut. Cara kerjanya sendiri dengan mempelajari minat pengguna baru berdasarkan item yang mirip dengan yang disukai pengguna di masa lalu atau sedang dilihat di masa kini. Semakin banyak informasi yang diberikan pengguna maka akan semakin baik akurasi sistem rekomendasi [[3]](https://www.dicoding.com/academies/319/corridor). Berbeda dengan Collaborative filtering(CF), model ini  dibagi menjadi dua jenis, yaitu  Model-based (metode berbasis model *machine learning*) dan Memory-based (metode berbasis memori). Jenis Model-based tidak jauh algoritma Memory-based, yaitu tetap menggunakan nilai rating sebagai sumber data. Namun, algoritma ini memanfaatkan teknik-teknik di data mining atau machine learning seperti Bayesian, clustering, dan *Deep learning atau Neural Network* [[4]](https://journal.widyatama.ac.id/index.php/jitter/article/view/44). Sedangkan, pada jenis Memori-based terbagi lagi menjadi User-based Collaborative Filtering  dan Item-based Collaborative Filtering. User-based Collaborative Filtering atau user-based CF dan bekerja dengan menemukan kesamaan antar pengguna lalu model akan merekomendasikan selera yang sama dengan pengguna lain kepada pengguna tersebut [[5]](https://scholar.google.com/scholar?hl=id&as_sdt=0%2C5&q=Handrico%2C+A.+%22Sistem+rekomendasi+buku+perpustakaan+fakultas+sains+dan+teknologi+dengan+metode+collaborative+filtering%22.++Jurusan+teknik+informatika%2C+Fakultas+sains+dan+Teknologi+universitas+Islam+negeri+Sultan+Syarif+Kasim+Riau.+Pekanbaru&btnG=).  bekerja dengan cara menghitung kesamaan beberapa item [[6]](https://doi.org/10.30864/eksplora.v9i1.244).
+  Maka dari itu, sebuah sistem rekomendasi (recommendation system) diperlukan agar dapat memberikan rekomendasi jurusan masuk perguruan tinggi berdasarkan ketertarikan dan kebutukan dalam pencarian referensi. Dalam sistem rekomendasi, algoritma yang biasanya digunakan adalah **content based filtering(CB)** dan collaborative filtering (CF). Ide dari sistem rekomendasi **content based filtering(CB)** adalah merokomendasikan suatu item yang menggunakan deskripsi dari item tersebut. Cara kerjanya sendiri dengan mempelajari minat pengguna baru berdasarkan item yang mirip dengan yang disukai pengguna di masa lalu atau sedang dilihat di masa kini. Semakin banyak informasi yang diberikan pengguna maka akan semakin baik akurasi sistem rekomendasi [[3]](https://www.dicoding.com/academies/319/corridor). Berbeda dengan Collaborative filtering(CF), model ini  dibagi menjadi dua jenis, yaitu  Model-based (metode berbasis model *machine learning*) dan Memory-based (metode berbasis memori). Jenis Model-based tidak jauh algoritma Memory-based, yaitu tetap menggunakan nilai rating sebagai sumber data. Namun, algoritma ini memanfaatkan teknik-teknik di data mining atau machine learning seperti Bayesian, clustering, dan *Deep learning atau Neural Network* [[4]](https://journal.widyatama.ac.id/index.php/jitter/article/view/44). Sedangkan, pada jenis Memori-based terbagi lagi menjadi User-based Collaborative Filtering  dan Item-based Collaborative Filtering. User-based Collaborative Filtering atau user-based CF dan bekerja dengan menemukan kesamaan antar pengguna lalu model akan merekomendasikan selera yang sama dengan pengguna lain kepada pengguna tersebut [[5]](https://scholar.google.com/scholar?hl=id&as_sdt=0%2C5&q=Handrico%2C+A.+%22Sistem+rekomendasi+buku+perpustakaan+fakultas+sains+dan+teknologi+dengan+metode+collaborative+filtering%22.++Jurusan+teknik+informatika%2C+Fakultas+sains+dan+Teknologi+universitas+Islam+negeri+Sultan+Syarif+Kasim+Riau.+Pekanbaru&btnG=).  bekerja dengan cara menghitung kesamaan beberapa item [[6]](https://doi.org/10.30864/eksplora.v9i1.244).
 
   Rumpun program studi atau jurusan terbagi menjadi dua bagian, yaitu saintek dan soshum. Saintek atau sains dan teknologi berasal dari kelompok IPA, sedangkan soshum atau sosial dan humaniora berasal dari kelompok IPS.
 Berdasarkan hasil riset dari jurnal RevoU pada tahun 2023 tentang pertumbuhan peminat jurusan saintek dan non-saintek atau Soshum di 10 kampus terbaik Indonesia, ada sebanyak 29 jurusan Saintek dan 21 jurusan non-saintek dengan persentase masing-masing 58% dan 42% dengan selisih 16% [[7]](https://journal.revou.co/pertumbuhan-program-studi-2023/). Penelitian lain juga memperkuat hasil tersebut bahwa data jumlah peminat mahasiswa jurusan saintek dan soshum dari tahun 2016-2020 di salah satu universitas yang ada di Indonesia menunjukan perbedaan pada jurusan saintek yang lebih unggul daripada jurusan soshum [[8]](https://www.researchgate.net/publication/352553378_ANALISIS_PROBABILITAS_PEMINAT_JURUSAN_SAINTEK_DI_UNIVERSITAS_JEMBER_TAHUN_2021_MENGGUNAKAN_METODOLOGI_DISTRIBUSI_POISSON). Kondisi ini menunjukan bahwa daya saing dan minat mahasiswa terhadap kedua pilihan jurusan tersebut hampir setara, tetapi peminat saintek sedikit unggul jumlahnya dari peminat non-saintek.  
 
-Dapat diambil kesimpulan dari beberapa infromasi diatas bahwa sistem rekomendasi sangat diperlukan dalam rangka meminimalisasi terjadinya kasus mahasiswa salah jurusan karena banyaknya sumber informasi yang beredar terkait infromasi jurusan sehingga membuat para mahasiswa bingung untuk mengeksplorasinya. Kemudian dalam hal teknis, sistem rekomendasi yang akan dikembangkan menggunakan dua teknik, yaitu content based filtering(CB) dan collaborative filtering (CF). Terakhir, pengembangan sistem rekomendasi ini akan disesuaikan berdasarkan dua riset yang menunjukan saintek memiliki peminat yang lebih banyak dari pada jurusan soshum. Oleh karena itu, model sistem rekomendasi yang akan dibuat akan lebih spesifik menggunakan sampel data dari peminat jurusan saintek karena dilihat dari segi jumlahnya yang lebih banyak.
+Dapat diambil kesimpulan dari beberapa infromasi diatas bahwa sistem rekomendasi sangat diperlukan dalam rangka meminimalisasi terjadinya kasus mahasiswa salah jurusan karena banyaknya sumber informasi yang beredar terkait infromasi jurusan sehingga membuat para mahasiswa bingung untuk mengeksplorasinya. Kemudian dalam hal teknis, sistem rekomendasi yang akan dikembangkan menggunakan dua teknik, yaitu **content based filtering(CB)** dan collaborative filtering (CF). Terakhir, pengembangan sistem rekomendasi ini akan disesuaikan berdasarkan dua riset yang menunjukan saintek memiliki peminat yang lebih banyak dari pada jurusan soshum. Oleh karena itu, model sistem rekomendasi yang akan dibuat akan lebih spesifik menggunakan sampel data dari peminat jurusan saintek karena dilihat dari segi jumlahnya yang lebih banyak.
 ## Business Understanding
 ### 1. Problem Statements
 Berdasarkan latar belakang yang telah diuraikan sebelumnya, sistem rekomendasi akan dikembangkan dalam bentuk model untuk menjawab dua permasalahan berikut:
@@ -97,23 +97,23 @@ Pada tahap ini, penghapusan beberapa variabel yang kurang relevan dan telah dike
 Setelah proses penggabungan Dataset, banyak baris yang menjadi missing value. Hal ini disebabkan adanya perbedaan baris data dari masing-masing dataset sehingga menimbulkan hilangnya beberapa baris data sehingga teridentifikasi missing value. Beberapa variabel yang mengandung missing value, yaitu type, major_name, capacity, id_university, dan university_name. Hanya variabel id_major, id_user, dan rata-rata nilai saja yang teridentifikasi memiliki 0 missing value. Fungsi dropna akan digunakan dalam mengatasi missing value. Alasan dilakukan tahap ini agar ketika pelatihan model nanti tidak terdapat informasi yang hilang sehingga model yang dihasilkan lebih optimal.
 ### Dropping Duplicated Columns
 Proses "Dropping Duplicated Columns" dilakukan untuk menghapus kolom-kolom yang memiliki nilai yang sama di setiap barisnya. Tujuan utamanya adalah untuk membersihkan data dan menghilangkan redundansi, sehingga memungkinkan analisis data yang lebih akurat dan efisien. Kali ini variabel major_name terdeteksi mengandung duplikat data.
-## Data Preparation - Content Based Filtering
+## Data Preparation - **Content Based Filtering**
 ### Convert Series-List Data
 Tujuan dari proses ini untuk mengubah bentuk data yang awalnya berbentuk dataframe menjadi berbentuk list sehingga persyaratan pada input tahap TF-IDF Vectorizer terpenuhi. Proses ini akan menggunakan fungsi `tolist().
 ### Creating a Dictionary
 Tujuan dari proses ini untuk membuat dictionary dari beberapa variabel dataset final. Proses ini akan menggunakan fungsi *DataFrame()* sebagai alat pembuatanya.
 
-## Model Development -Content Based Filtering
+## Model Development -**Content Based Filtering**
 Ide dari sistem rekomendasi content based filtering(CB) adalah merokomendasikan suatu item yang menggunakan deskripsi dari item tersebut. Cara kerja dari model ini dengan mempelajari minat pengguna baru berdasarkan item yang mirip dengan yang disukai pengguna di masa lalu atau sedang dilihat di masa kini. Semakin banyak informasi yang diberikan pengguna maka akan semakin baik akurasi sistem rekomendasi
 
-Kelebihan teknik Content Based Filtering:
+Kelebihan teknik **Content Based Filtering**:
 * Transparansi: Rekomendasi yang diberikan dapat dijelaskan dengan menganalisis fitur atau konten dari item yang disukai pengguna.
   
 * Tidak Memerlukan Data dari Pengguna Lain: Rekomendasi dihasilkan hanya berdasarkan preferensi dan riwayat pengguna itu sendiri, sehingga tidak memerlukan data dari pengguna lain.
   
 * Dapat Menangani Data Baru: Teknik ini dapat memberikan rekomendasi untuk item baru yang belum dirating oleh pengguna lain, selama item tersebut memiliki fitur atau konten yang serupa dengan item yang disukai pengguna.
 
-Kekurangan teknik Content Based Filtering:
+Kekurangan teknik **Content Based Filtering**:
 * Masalah Keterbatasan Analisis Konten: Analisis konten yang terbatas dapat menyebabkan rekomendasi yang kurang akurat, terutama untuk item-item yang memiliki fitur atau konten yang kompleks dan sulit dianalisis secara otomatis.
   
 * Tidak Dapat Menangkap Preferensi yang Berubah: Teknik ini hanya merekomendasikan item-item yang serupa dengan item yang telah disukai pengguna di masa lalu, sehingga tidak dapat menangkap perubahan preferensi pengguna.
@@ -143,20 +143,19 @@ Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat de
 |3|3511212|UNIVERSITAS JENDERAL SOEDIRMAN|PENDIDIKAN DOKTER GIGI|
 |4|1711075|UNIVERSITAS SRIWIJAYA|PENDIDIKAN DOKTER GIGI|
 
-Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI yang ada pada tabel 1 menghasilkan 5 jurusan yang serupa dengan keyword *gigi* dan *pendidikan*.
+Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI yang ada pada tabel 1 menghasilkan 5 jurusan yang serupa dengan keyword *gigi*. 
 
-## Data Preparation - Collaborative Filtering
-
+## Data Preparation -**Collaborative Filtering**
 ### Encode Dataset
 Mengubah variabel `id_user` dan 'id_major' menjadi list tanpa nilai dengan fungsi `unique()` dan `tolist()`. Setelah itu,  melakukan encoding ke masing-masing  variable yang telah diubah tersebut ke dalam indeks integer dan melakukan proses encoding angka ke masing-masing  variable yang telah diubah tersebut.
 ### Mapping Features
 Selanjutnya, kedua variabel tadi akan disimpan ke variabel `user` dan `prodi` dan dilakukan pemetaan ke dataframe yang berkaitan. Langkah selanjutnya adalah mencari jumlah user, prodi, nilai minimum dan maksimum hasil rata-rata nilai tes mahasiswa. Hasilnya terdapat 1541 jumlah user dan jumlah prodi, 395.125 nilai min hasil rata-rata nilai tes, dan 758.0 nilai max hasil rata-rata nilai tes.
 Tahap tersebut penting dilakukan dalam pemodelan data karena memberikan pemahaman yang lebih mendalam tentang karakteristik data yang akan digunakan dalam analisis atau pemodelan selanjutnya
 ### Split Data Training and Validation
-Tahap kali ini akan dilakukan beberapa tindakan. Pertama, dataframe `df` diacak menggunakan metode `.sample()` dengan menyertakan parameter `frac=1` untuk mengambil seluruh baris dan `random_state=42` untuk memastikan reproducibility. Kemudian, kolom 'user' dan 'prodi' dipisahkan sebagai fitur `x`, sementara kolom 'rata_rata_nilai' dinormalisasi ke rentang antara 0 dan 1 menggunakan formula min-max scaling. Data kemudian dibagi menjadi 80% data latih dan 20% data validasi. Hasil akhir dari pemrosesan ini adalah data fitur `x` dan target `y` yang siap untuk digunakan dalam proses training dengan data latih dan validasi yang terpisah sesuai dengan proporsi yang ditentukan.
+Pada tahap ini, beberapa tindakan akan dilakukan. Pertama, urutan data dalam dataframe `df` akan diacak menggunakan metode `.sample()`. Ini akan dilakukan dengan mengambil seluruh baris (`frac=1`) dan memastikan hasil yang dapat direproduksi dengan menetapkan `random_state=42`. Setelah pengacakan, kolom 'user' dan 'prodi' akan dipisahkan sebagai fitur `x`, sementara kolom 'rata_rata_nilai' akan dinormalisasi sehingga nilainya berada dalam rentang antara 0 dan 1 menggunakan metode min-max scaling. Selanjutnya, data akan dibagi menjadi dua bagian: 80% untuk data latih dan 20% untuk data validasi. Akhirnya, hasil akhir dari proses ini akan menjadi data fitur `x` dan target `y`, yang siap untuk digunakan dalam proses pelatihan. Data latih dan data validasi akan dipisahkan sesuai dengan proporsi yang telah ditentukan.
 
-## Model Development -Collaborative Filtering
-Model Collaborative Filtering (CF) adalah pendekatan dalam sistem rekomendasi yang berfokus pada penggunaan perilaku pengguna terhadap item (produk atau layanan) serta perilaku pengguna lainnya untuk membuat rekomendasi. Model ini didasarkan pada ide bahwa pengguna yang memiliki preferensi atau perilaku serupa terhadap item-item tertentu cenderung memiliki preferensi yang serupa juga terhadap item lainnya. Pada projek ini model bekerja dengan menemukan jurusan-jurusan yang mirip dan tidak pernah diketahui oleh mahasiswa dengan mempertimbangkan preferensi user berdasarkan suatu nilai yang di input diawal. 
+## Model Development -**Collaborative Filtering**
+Model **Collaborative Filtering(CF)** adalah pendekatan dalam sistem rekomendasi yang berfokus pada penggunaan perilaku pengguna terhadap item (produk atau layanan) serta perilaku pengguna lainnya untuk membuat rekomendasi. Model ini didasarkan pada ide bahwa pengguna yang memiliki preferensi atau perilaku serupa terhadap item-item tertentu cenderung memiliki preferensi yang serupa juga terhadap item lainnya. Pada projek ini model bekerja dengan menemukan jurusan-jurusan yang mirip dan tidak pernah diketahui oleh mahasiswa dengan mempertimbangkan preferensi user berdasarkan suatu nilai yang di input diawal. 
 
 **Kelebihan teknik Collaborative Filtering:**
 * Tidak memerlukan informasi item: Collaborative filtering tidak memerlukan analisis konten atau metadata item, melainkan hanya menggunakan data interaksi pengguna (seperti rating atau perilaku) untuk memberikan rekomendasi.
@@ -185,90 +184,85 @@ Selanjutnya, terdapat beberapa langkah untuk memberikan rekomendasi program stud
 **Tabel 3. Input untuk user dengan id `8705` dan jurusan 'Fisika'** :
 |index|id\_major|id\_user|rata\_rata\_nilai|type|major\_name|capacity|id\_university|university\_name|user|prodi|
 |-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|
-|1529|3821016|8705|631\.5|science|FISIKA|48\.0|382\.0|INSTITUT TEKNOLOGI SEPULUH NOPEMBER|656|656|
+|1549|3341046|8772|593\.125|science|PENDIDIKAN KIMIA|41\.0|334\.0|UNIVERSITAS PENDIDIKAN INDONESIA|661|661|
 
 **Tabel 4. Hasil rekomendasi untuk user dengan id `8705` dan jurusan 'Fisika'** :
 |index|id\_major|id\_user|rata\_rata\_nilai|type|major\_name|capacity|id\_university|university\_name|user|prodi|
 |-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|
-|294|3611445|1544|619\.375|science|TEKNIK PERTANIAN|45\.0|361\.0|UNIVERSITAS GADJAH MADA|239|239|
-|139|3551132|808|569\.375|science|PERIKANAN TANGKAP|50\.0|355\.0|UNIVERSITAS DIPONEGORO|123|123|
-|540|3341085|2760|649\.0|science|BIOLOGI|21\.0|334\.0|UNIVERSITAS PENDIDIKAN INDONESIA|366|366|
-|16|3551027|110|661\.875|science|KEDOKTERAN|85\.0|355\.0|UNIVERSITAS DIPONEGORO|15|15|
-|281|3551205|1463|624\.125|science|TEKNIK KIMIA|113\.0|355\.0|UNIVERSITAS DIPONEGORO|231|231|
-|1319|3731203|7951|608\.0|science|TEKNIK ELEKTRO|45\.0|373\.0|UNIVERSITAS NEGERI MALANG|617|617|
-|91|3551155|491|608\.25|science|OCEANOGRAFI  |60\.0|355\.0|UNIVERSITAS DIPONEGORO|82|82|
-|63|3551221|335|653\.75|science|PERENCANAAN WILAYAH DAN KOTA|79\.0|355\.0|UNIVERSITAS DIPONEGORO|57|57|
-|748|3611414|4245|621\.125|science|TEKNIK NUKLIR|30\.0|361\.0|UNIVERSITAS GADJAH MADA|450|450|
-|321|3551236|1676|648\.25|science|TEKNIK INDUSTRI|75\.0|355\.0|UNIVERSITAS DIPONEGORO|257|257|
+|152|3531015|891|677\.5|science|KEDOKTERAN|110\.0|353\.0|UNIVERSITAS SEBELAS MARET|135|135|
+|11990|1311016|58569|476\.5|science|FISIKA|48\.0|131\.0|UNIVERSITAS RIAU|1090|1090|
+|2391|1311024|12885|553\.125|science|KIMIA|48\.0|131\.0|UNIVERSITAS RIAU|772|772|
+|8773|3711261|44972|549\.0|science|PROTEKSI TANAMAN|25\.0|371\.0|UNIVERSITAS JEMBER|1043|1043|
+|954|3721336|5939|614\.25|science|FARMASI|48\.0|372\.0|UNIVERSITAS BRAWIJAYA|527|527|
+|6021|3621084|31881|562\.5|science|PENDIDIKAN TEKNIK ELEKTRO|32\.0|362\.0|UNIVERSITAS NEGERI YOGYAKARTA|973|973|
+|3644|3621126|18463|582\.75|science|KIMIA|32\.0|362\.0|UNIVERSITAS NEGERI YOGYAKARTA|880|880|
+|2549|3621173|13574|471\.875|science|ILMU KEOLAHRAGAAN|16\.0|362\.0|UNIVERSITAS NEGERI YOGYAKARTA|794|794|
+|1484|3621134|8494|592\.625|science|BIOLOGI|32\.0|362\.0|UNIVERSITAS NEGERI YOGYAKARTA|647|647|
+|1822|3531062|10376|622\.5|science|ILMU DAN TEKNOLOGI PANGAN|50\.0|353\.0|UNIVERSITAS SEBELAS MARET|702|702|
 
-Dari gambar di atas terlihat sistem menampilkan jurusan dengan skor tertinggi dari pemberian user. Sistem rekomendasi menampilkan 10 rekomendasi jurusan yang belum pernah diketahui user dan memiliki skor yang berada dibawah hingga diatas user. Dengan demikian, user dapat melihat prodi apa yang sesuai dengan skor mereka berdasarkan rekomendasi minimum skor dan maksimum skor.
+Dari gambar di atas terlihat, sistem menampilkan jurusan dengan skor yang sesuai dari input user. Sistem rekomendasi menampilkan 10 rekomendasi jurusan yang belum pernah diketahui user dan memiliki skor yang berada dibawah hingga diatas input user. Dengan demikian, user dapat melihat prodi apa yang sesuai dengan skor mereka berdasarkan rekomendasi skor dari minimum hingga maksimum. Harapanya 
 ## Evaluation
 
-### 1. Model Content Based Filtering
+### 1. Model **Content Based Filtering**
+Berdasarkan hasil dari penggunaan teknik permodelan **Content Based Filtering** bahwa sistem rekomendasi dapat menghasilkan output rekomendasi yang cukup baik karena dari 5 hasil yang ada, semuanya hampir mirip dengan input user. Terlebih beberapa jurusan yang direkomendasikan memiliki kesamaan keyword, yaitu *gigi. Metrix yang akan digunakan adalah Recomender System Precision (RSP). Metrix ini mengukur seberapa relevan rekomendasi yang diberikan oleh sistem dengan preferensi pengguna yang sebenarnya. Maka dari itu, metrik ini sesuai dengan masalah dan solusi karena ingin memberikan rekomendasi yang sesuai/relevan.
 
-Pertama pada model *Content Based Filtering* dapat dikatakan sudah sangat baik karena relatif 5 dari 5 rekomendasi yang diberikan sistem pada data sampel cenderung mirip karena memberikan rekomenedasi dengan keyword *Rites* dan *of Passage*. Kita menggunakan metrik *recomender system precision*. Metrik ini sesuai dengan konteks data kita yaitu teks karena berdasarkan judul buku sehingga perlu melihat apakah kata-kata antar judul mirip. Kemudian terkait konteks masalah dan solusi yaitu ingin menghasilkan sistem rekomendasi secara efektif karena judul yang diberikan relatif relevan dan efisien karena berbasis sistem sehingga cepat, jadi metrik ini sesuai dengan masalah dan solusi karena ingin meningkatkan ketepatan memberikan rekomendasi yang sesuai/relevan.
-
-Formula metrik Recomender System Precision (RSP) ini adalah sebagai berikut :
+Untuk Formula metrik Recomender System Precision (RSP) ini adalah sebagai berikut :
 
 $$RSP = R_R/R_A$$
 
 Ket :
 
-$R_R$ = Jumlah rekomendasi yang relevan
+$R_R$ = Jumlah rekomendasi yang relevan/terkait
 
-$R_A$ = Jumlah keseluruhan rekomendasi yang prediksi model
+$R_A$ = Jumlah keseluruhan rekomendasi model yang diprediksi
 
 
 Cara kerja metrik ini adalah dengan membandingkan seberapa banyak prediksi model yang relevan atau sesuai dengan keseluruhan rekomendasi yang telah diberikan.
 
-Berikut hasil rekomendasi dari buku dengan ISBN `0155061224` :
+Berikut tampilan input user dan hasil rekomendasi berdasarkan input tersebut:
+- **Tabel 1. Data Jurusan dengan Id `3611476`** :
+ 
+|index|id\_major|university\_name|major\_name|
+|------:|------:|-----------------:|:------------|
+|118|3611476|UNIVERSITAS GADJAH MADA|HIGIENE GIGI|
 
-- **Data Buku `0155061224`** :
+- **Tabel 2. 5 Rekomendasi Jurusan, Berdasarkan Target Jurusan dengan Id `3611476`**
 
-| No | ISBN | Book Author | Book Title |
-|--|---|:---:|---|
-| 1. | 0155061224 | Judith Rae	| Rites of Passage |
-
-
-- **5 Rekomendasi Buku, Berdasarkan Konten Buku `0155061224`**
-
-| No | ISBN | Book Author | Book Title |
-|--|---|:---:|---|
-| 1. | 0553580515 | Connie Willis | Passage |
-| 2. | 0679435506 | Marianne Williamson | Illuminata: Thoughts, Prayers, Rites of Passage |
-| 3. | 0380715325 | Alison McLeay | Passage Home |
-| 4. | 0812510488 | Christopher Pike	 | The Season of Passage |
-| 5. | 0373031203 | Rebecca Winters | Rites Of Love (Harlequin Romance, No 3120) |
+|index|id\_major|university\_name|major\_name|
+|------:|------:|-----------------:|:------------|
+|0|3721305|UNIVERSITAS BRAWIJAYA|PENDIDIKAN DOKTER GIGI|
+|1|1111181|UNIVERSITAS SYIAH KUALA|PENDIDIKAN DOKTER GIGI|
+|2|6111262|UNIVERSITAS UDAYANA|PENDIDIKAN DOKTER GIGI|
+|3|3511212|UNIVERSITAS JENDERAL SOEDIRMAN|PENDIDIKAN DOKTER GIGI|
+|4|1711075|UNIVERSITAS SRIWIJAYA|PENDIDIKAN DOKTER GIGI|
 
 
-Sehingga presisi sistem rekomendasi *Content Based Filtering* pada sampel ini adalah 5/5 = 100%.
+Hasil diatas menunjukan bahwa presisi dari sistem rekomendasi dengan teknik **Content Based Filtering** pada uji coba ini, yakni 5/5 = 100%.
 
 ### 2. Model Collaborative Filtering
-
-Kedua pada model *Collaborative Filtering*, menggunakan metrik *Root Mean Squared Error (RMSE)* untuk mengevaluasi seberapa baik model dalam memberikan rekomendasi. Kita memilih metrik RMSE karena sesuai dengan konteks data kita yaitu angka karena berdasarkan ratings sehingga perlu melihat apakah model dapat memprediksi nilai rating dengan selisih kesalahan terkecil. Kemudian terkait konteks masalah dan solusi yaitu ingin menghasilkan sistem rekomendasi secara efektif karena berbasis rating pengguna dan efisien karena berbasis sistem sehingga cepat, jadi metrik ini sesuai dengan masalah dan solusi karena ingin mengecilkan tingkat error sehingga sistem lebih efektif. Selain itu, dengan metrik RMSE relatif dapat diinterpretasikan langsung karena merupakan nilai rata-rata tingkat kesalahan dan sudah diakarkan.
-
-Formula metrik Root Mean Squared Error (RMSE) adalah sebagai berikut :
+Metrik Root Mean Squared Error (RMSE) dipilih untuk mengevaluasi seberapa baik model Collaborative Filtering dalam memberikan rekomendasi. Pemilihan metrik RMSE didasarkan pada konteks data yang menggunakan angka, yakni berdasarkan ratings, sehingga diperlukan penilaian seberapa baik model memprediksi nilai rating dengan kesalahan yang minimal. Terkait dengan konteks masalah dan solusi, yaitu pengembangan sistem rekomendasi berbasis rating pengguna secara efektif dan efisien, metrik ini dianggap sesuai karena bertujuan untuk mengurangi tingkat error sehingga sistem lebih efektif. Lebih lanjut, metrik RMSE memungkinkan interpretasi langsung karena mencerminkan rata-rata tingkat kesalahan yang sudah diakarkan.
+.
+Untuk Formula metrik Root Mean Squared Error (RMSE):
 
 $$RMSE = \sqrt{\sum{(Y_t - Y_p)^2} \over n}$$
 
 Ket :
 
-$Y_t$ = Y true (Aktual)
+$Y_t$ = Y true (Aktual/target)
 
 $Y_p$ = Y predict (Prediksi)
 
 n = jumlah data
 
-Cara kerja metrik ini adalah dengan menyelisihkan nilai aktual dengan nilai prediksi lalu dikuadratkan kemudian ditotalkan dengan seluruh data dan selanjutnya dibagi dengan jumlah data, terakhir diakarkan.
+Metrik Root Mean Squared Error (RMSE) bekerja dengan menghitung akar kuadrat dari rata-rata kuadrat selisih antara nilai prediksi dan nilai sebenarnya. Semakin kecil nilai RMSE, semakin baik model dalam memprediksi nilai, karena menunjukkan bahwa kesalahan prediksi model cenderung kecil. Ini membuat RMSE menjadi metrik yang berguna dalam mengevaluasi kualitas prediksi model regresi dan rekomendasi. Berikut hasil visualisasi metrix RMSE pada model sistem rekomendasi jurusan dengan teknik collaborative filltering.
 
-![Hasil RMSE](https://user-images.githubusercontent.com/83503249/200128246-1ee97eb6-3d89-49e6-a551-9febbc4375d8.png)
+![Pict RMSE](https://github.com/Symphoen1x/Dicoding_expert2/blob/main/image.png)
 
-Kalau kita lihat performa model *Collaborative Filtering* sudah bagus karena cenderung memiliki error yang menurun dan relatif sudah stabil seiring pertambahan epochs. Cenderung tidak *overfitting* karena selisih error antara training dan validasi masih wajar sekitar 0.06 atau 6% an. Selain itu, model dapat dikatakan lumayan *good fit* karena relatif sudah mencapai titik error optimal di angka 0.3-an, kemudian relatif hasil RMSE *training* dan validasi sudah baik untuk kasus sistem rekomendasi, merujuk pada modul "Machine Learning Terapan".
+Hasil dari gambar tersebut menunjukan model *Collaborative Filtering* telah bekerja cukup lumayan karena cenderung memiliki eror yang kurang stabil. Tidak terlihat ada kendala seperti *overfitting* karena range selisih eror training dan validation sekitar 0.5-0.6 saja. Namun, Nilai RMSE 0,18 dan 0,19 menunjukkan bahwa model masih memiliki kesalahan prediksi yang cukup besar. Hal ini berarti model masih dapat dioptimasi lebih lanjut untuk meningkatkan akurasinya.
 
 
 ## Conclusion
-Pada projek ini kita telah melalui berbagai tahapan mulai dari memahami ulasan proyek, memahami kasus bisnis yang ingin diselesaikan, lalu mencoba mengerti data yang ada, menyiapkan dataset, modeling hingga evaluasi. Kita juga telah berhasil menyelesaikan masalah bisnis dan mencapai tujuan yang ada melalui pembangunan model dengan 2 pendekatan yaitu **Content Based Filtering** dan **Collaborative Filtering**. Yang mana kedua pendekatan ini relatif dapat saling melengkapi dalam rangka mengoptimalkan performa sistem rekomendasi dalam memberikan rekomendasi yang efektif dan efisien. Harapannya melalui projek ini dapat memberikan manfaat bagi penulis dan pembaca secara luas. Sekian terima kasih telah membaca projek ini.
-
+Projek ini telah berhasil dibuat dengan beberapa tahapan yang cukup kompleks. Diawali dari project overview, buisness understanding, pembuatan model yang tahap-tahap, dan evaluasi model. Prblem statement yang diminta juga sudah selesai dibuat dan sesuai dengan tujuan yang melalui 2 teknik, yaitu **Collaborative Filtering** dan **Content Based Filtering**. Hasil dari keduanya cukup lumayan untuk menjadi sebuah sistem rekomendasi, tetapi perlu adanya optimasi lebih lanjut pada model agar menghasilkan rekomendasi jurusan yang lebih sesuai dan tepat.
 
 ## Reference
 
