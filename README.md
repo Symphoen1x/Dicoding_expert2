@@ -87,6 +87,7 @@ Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabe
 * Count Mean of Specific Column
   
 Karena syarat terkait kualifikasi nilai ujian yang diminta adalah rata-rata dari beberapa tes atau ujian maka  kolom baru yang berisi hasil rata-rata nilai ujian dari beberapa subtes akan dibuat. Beberapa subtes tersebut, yaitu Biologi(Bio),	Fisika(Fis),	Kimia(Kim),	Kemampuan Membaca dan Menulis(KMB),	Kemampuan Penalaran Umum(KPU),	Kemampuan Kuantitatif(Kua),	Matematika(Mat), dan	Pengetahuan dan Pemahaman Umum(PPU).
+## Data Preparation Umum
 ### Merge Third Column -Dataset Final
 Tahap kali ini akan dilakukan percobaan menggabungkan ketiga dataset, yaitu major, score science dan universities. Alasan dari penggabungan ketiga dataset tersebut agar informasi penting dari ketiga datset yang akan digunakan dapat disatukan secara lengkap. Terdapat beberapa insight dan temuan baru pada dataframe gabungan ini. Beberapa diantaranya, yakni tergabungnya kolom id_user, id_university, dan id_major dalam satu dataframe, kemudian baris data dan seluruh variabel yang ada dalam dataframe memiliki kesamaan dengan jumlah 86570 baris dan 8 kolom. Selanjutnya, tahapan pengecekan ulang sebelum data final terhadap beberapa kondisi data yang belum terlihat jelas.
 ### Filtering and Removing Irrelevant Values
