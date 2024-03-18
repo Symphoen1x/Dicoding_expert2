@@ -88,9 +88,9 @@ Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabe
   
 Karena syarat terkait kualifikasi nilai ujian yang diminta adalah rata-rata dari beberapa tes atau ujian maka  kolom baru yang berisi hasil rata-rata nilai ujian dari beberapa subtes akan dibuat. Beberapa subtes tersebut, yaitu Biologi(Bio),	Fisika(Fis),	Kimia(Kim),	Kemampuan Membaca dan Menulis(KMB),	Kemampuan Penalaran Umum(KPU),	Kemampuan Kuantitatif(Kua),	Matematika(Mat), dan	Pengetahuan dan Pemahaman Umum(PPU).
 ## Merge Third Column -Dataset Final
-Tahap kali ini akan dilakukan percobaan menggabungkan ketiga dataset, yaitu major, score science dan universities. Percobaan pertama adalah penggabungan antara dataset major dengan science score berdasarkan kolom id_major. Kemudian dilanjut menggabungkan dataset hasil percobaan pertama dengan universities berdasarkan kolom id_university dengan fungsi merge(). Alasan dari penggabungan ketiga dataset tersebut agar informasi penting dari ketiga datset yang akan digunakan dapat disatukan secara lengkap.
+Tahap kali ini akan dilakukan percobaan menggabungkan ketiga dataset, yaitu major, score science dan universities. Percobaan pertama adalah penggabungan antara dataset major dengan science score berdasarkan kolom id_major. Kemudian dilanjut menggabungkan dataset hasil percobaan pertama dengan universities berdasarkan kolom id_university. Alasan dari penggabungan ketiga dataset tersebut agar informasi penting dari ketiga datset yang akan digunakan dapat disatukan secara lengkap.
 ### Filtering Irrelevant Values
-Pada tahap ini, beberapa value dari kolom type mengandung jenis yang berbeda dengan tujuan bisnis, yaitu value *humanities*. Karena fokus di projek ini adalah data sampel jurusan saintek maka value tersebut akan dilakukan peng-fileteran dengan fungsi isin().
+Pada tahap ini, beberapa value dari kolom type mengandung jenis yang berbeda dengan tujuan bisnis, yaitu value *humanities*. Karena fokus di projek ini adalah data sampel jurusan saintek maka value tersebut akan dilakukan peng-fileteran untuk penanganan value tersebut.
 ### Removing Irrelevant Values
 Pada tahap ini, penghapusan beberapa variabel yang kurang relevan dan telah diketahui dari tahap sebelumnya akan di hapus.
 ### Overcoming Missing Value
