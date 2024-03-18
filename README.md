@@ -57,7 +57,7 @@ Dataset universities menyimpan data-data yang berkaitan dengan infromasi univers
 ### Dataset Universitas
 * Droping column
 
-Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_univ sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
+Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_univ sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi.
 * Check Characteristic Dataset
   
 Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada datset univ, semua variabel yang telah dicek tidak menampilkan permasalahan. Jadi bisa dikatakan dataset ini cukup aman dari sumber data.
@@ -67,7 +67,7 @@ Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabe
 ### Dataset Program Studi
 * Droping column
   
-Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_major sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
+Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah sebuah kolom duplikasi dari id_major sehingga tidak perlu digunakan secara ganda untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi.
 * Check Characteristic Dataset
   
 Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup  informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada dataset jurusan, semua variabel yang telah dicek juga tidak menampilkan permasalahan. Kembali lagi diambil kesimpulan bahwa dataset ini cukup aman dari sumber data.
@@ -77,7 +77,7 @@ Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabe
 ### Dataset Score Science
 * Droping column
   
-Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah beberapa kolom duplikasi variabel lain sehingga tidak perlu digunakan untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi. 
+Tahap ini melibatkan penghapusan kolom atau variabel tertentu dari dataset. Kolom yang akan adalah beberapa kolom duplikasi variabel lain sehingga tidak perlu digunakan untuk tahapan analisis data. Selain itu, penghapusan kolom dilakukan untuk menyederhanakan dataset dan meningkatkan efisiensi komputasi.
 * Check Characteristic Dataset
   
 Tahap ini melibatkan pemeriksaan karakteristik atau sifat-sifat dari dataset. Ini mencakup melihat informasi umum tentang dataset, seperti jumlah baris, tipe data dari setiap kolom, dan statistik deskriptif (misalnya, rata-rata, median, quartil, maks, min, dan standar deviasi). Memahami karakteristik dataset sangat penting untuk mempersiapkan analisis yang tepat dan mengidentifikasi masalah potensial dalam data. Pada dataset Score Science, semua variabel yang telah dicek juga tidak menampilkan permasalahan. Kembali lagi diambil kesimpulan bahwa dataset ini cukup aman dari sumber data.
@@ -88,11 +88,11 @@ Tahap ini melibatkan menghitung jumlah nilai unik dalam suatu kolom atau variabe
   
 Karena syarat terkait kualifikasi nilai ujian yang diminta adalah rata-rata dari beberapa tes atau ujian maka  kolom baru yang berisi hasil rata-rata nilai ujian dari beberapa subtes akan dibuat. Beberapa subtes tersebut, yaitu Biologi(Bio),	Fisika(Fis),	Kimia(Kim),	Kemampuan Membaca dan Menulis(KMB),	Kemampuan Penalaran Umum(KPU),	Kemampuan Kuantitatif(Kua),	Matematika(Mat), dan	Pengetahuan dan Pemahaman Umum(PPU).
 ## Merge Third Column -Dataset Final
-Tahap kali ini akan dilakukan percobaan menggabungkan ketiga dataset, yaitu major, score science dan universities dengan fungsi merge(). Percobaan pertama adalah penggabungan antara dataset major dengan science score berdasarkan kolom id_major. Kemudian dilanjut menggabungkan dataset hasil percobaan pertama dengan universities berdasarkan kolom id_university dengan fungsi merge(). Alasan dari penggabungan ketiga dataset tersebut agar informasi penting dari ketiga datset yang akan digunakan dapat disatukan secara lengkap.
+Tahap kali ini akan dilakukan percobaan menggabungkan ketiga dataset, yaitu major, score science dan universities. Percobaan pertama adalah penggabungan antara dataset major dengan science score berdasarkan kolom id_major. Kemudian dilanjut menggabungkan dataset hasil percobaan pertama dengan universities berdasarkan kolom id_university dengan fungsi merge(). Alasan dari penggabungan ketiga dataset tersebut agar informasi penting dari ketiga datset yang akan digunakan dapat disatukan secara lengkap.
 ### Filtering Irrelevant Values
 Pada tahap ini, beberapa value dari kolom type mengandung jenis yang berbeda dengan tujuan bisnis, yaitu value *humanities*. Karena fokus di projek ini adalah data sampel jurusan saintek maka value tersebut akan dilakukan peng-fileteran dengan fungsi isin().
 ### Removing Irrelevant Values
-Pada tahap ini, penghapusan beberapa variabel yang kurang relevan dan telah diketahui dari tahap sebelumnya akan di hapus. 
+Pada tahap ini, penghapusan beberapa variabel yang kurang relevan dan telah diketahui dari tahap sebelumnya akan di hapus.
 ### Overcoming Missing Value
 Setelah proses penggabungan Dataset, banyak baris yang menjadi missing value. Hal ini disebabkan adanya perbedaan baris data dari masing-masing dataset sehingga menimbulkan hilangnya beberapa baris data sehingga teridentifikasi missing value. Beberapa variabel yang mengandung missing value, yaitu type, major_name, capacity, id_university, dan university_name. Hanya variabel id_major, id_user, dan rata-rata nilai saja yang teridentifikasi memiliki 0 missing value. Fungsi dropna akan digunakan dalam mengatasi missing value. Alasan dilakukan tahap ini agar ketika pelatihan model nanti tidak terdapat informasi yang hilang sehingga model yang dihasilkan lebih optimal.
 ### Dropping Duplicated Columns
@@ -128,7 +128,7 @@ Tujuan dari tahap Kesamaan cosinus adalah mengukur kesamaan antara dua vektor da
 ### Presenting Top-N Recommendation
 Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat dengan beberapa parameter yang terdiri dari parameter wajib 'id_major'(jurusan yang ingin dicari rekomendasinya) dan sisanya opsional, yaitu 'similarity_data'(Matriks kesamaan kosinus antar-jurusan yang telah dihitung sebelumnya), 'items'(DataFrame yang berisi informasi mengenai setiap jurusan, termasuk ID jurusan, nama universitas, dan nama jurusan), dan 'k'(Jumlah rekomendasi yang ingin diberikan. Ini adalah parameter opsional dengan nilai default 5). Fungsi ini berkerja dengan mengambil data melalui menggunakan fungsi `argpartition()` untuk melakukan partisi secara tidak langsung sepanjang sumbu yang diberikan, selanjutnya melakukan pengubahan data menjadi numpy dan membuat range yang terdiri dari `range(start, stop, step)`. Setelah itu, data akan diambil pada similarity terbesar dari index yang ada. Terdapat pula langkah menghapus id jurusan sehingga model tidak merekomendasikan nama jurusan yang sama dengan yang dimasukan pengguna/user melalui fungsi `drop()`. Hasil akhir dari fungsi ini adalah mengembalikan sebuah dataframe yang berisi 5 rekomendasi jurusan. Berikut tampilan input user dan hasil rekomendasi berdasarkan input tersebut:
 - **Tabel 1. Data Jurusan dengan Id `3611476`** :
- 
+
 |index|id\_major|university\_name|major\_name|
 |------:|------:|-----------------:|:------------|
 |118|3611476|UNIVERSITAS GADJAH MADA|HIGIENE GIGI|
@@ -143,7 +143,7 @@ Pada tahap ini, fungsi yang dapat menghasilkan rekomendasi jursan akan dibuat de
 |3|3511212|UNIVERSITAS JENDERAL SOEDIRMAN|PENDIDIKAN DOKTER GIGI|
 |4|1711075|UNIVERSITAS SRIWIJAYA|PENDIDIKAN DOKTER GIGI|
 
-Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI yang ada pada tabel 1 menghasilkan 5 jurusan yang serupa dengan keyword *gigi*. 
+Berdasarkan hasil rekomendasi dari tabel 2, rekomendasi jurusan dari id jurusan 3611476 dengan nama HIGIENE GIGI yang ada pada tabel 1 menghasilkan 5 jurusan yang serupa dengan keyword *gigi*.
 
 ## Data Preparation -**Collaborative Filtering**
 ### Encode Dataset
@@ -155,7 +155,7 @@ Tahap tersebut penting dilakukan dalam pemodelan data karena memberikan pemahama
 Pada tahap ini, beberapa tindakan akan dilakukan. Pertama, urutan data dalam dataframe `df` akan diacak menggunakan metode `.sample()`. Ini akan dilakukan dengan mengambil seluruh baris (`frac=1`) dan memastikan hasil yang dapat direproduksi dengan menetapkan `random_state=42`. Setelah pengacakan, kolom 'user' dan 'prodi' akan dipisahkan sebagai fitur `x`, sementara kolom 'rata_rata_nilai' akan dinormalisasi sehingga nilainya berada dalam rentang antara 0 dan 1 menggunakan metode min-max scaling. Selanjutnya, data akan dibagi menjadi dua bagian: 80% untuk data latih dan 20% untuk data validasi. Akhirnya, hasil akhir dari proses ini akan menjadi data fitur `x` dan target `y`, yang siap untuk digunakan dalam proses pelatihan. Data latih dan data validasi akan dipisahkan sesuai dengan proporsi yang telah ditentukan.
 
 ## Model Development -**Collaborative Filtering**
-Model **Collaborative Filtering(CF)** adalah pendekatan dalam sistem rekomendasi yang berfokus pada penggunaan perilaku pengguna terhadap item (produk atau layanan) serta perilaku pengguna lainnya untuk membuat rekomendasi. Model ini didasarkan pada ide bahwa pengguna yang memiliki preferensi atau perilaku serupa terhadap item-item tertentu cenderung memiliki preferensi yang serupa juga terhadap item lainnya. Pada projek ini model bekerja dengan menemukan jurusan-jurusan yang mirip dan tidak pernah diketahui oleh mahasiswa dengan mempertimbangkan preferensi user berdasarkan suatu nilai yang di input diawal. 
+Model **Collaborative Filtering(CF)** adalah pendekatan dalam sistem rekomendasi yang berfokus pada penggunaan perilaku pengguna terhadap item (produk atau layanan) serta perilaku pengguna lainnya untuk membuat rekomendasi. Model ini didasarkan pada ide bahwa pengguna yang memiliki preferensi atau perilaku serupa terhadap item-item tertentu cenderung memiliki preferensi yang serupa juga terhadap item lainnya. Pada projek ini model bekerja dengan menemukan jurusan-jurusan yang mirip dan tidak pernah diketahui oleh mahasiswa dengan mempertimbangkan preferensi user berdasarkan suatu nilai yang di input diawal.
 
 **Kelebihan teknik Collaborative Filtering:**
 * Tidak memerlukan informasi item: Collaborative filtering tidak memerlukan analisis konten atau metadata item, melainkan hanya menggunakan data interaksi pengguna (seperti rating atau perilaku) untuk memberikan rekomendasi.
@@ -182,13 +182,15 @@ Pada tahap ini terdiri dari beberapa proses. Pertama, proses pengambilan sampel 
 Selanjutnya, terdapat beberapa langkah untuk memberikan rekomendasi program studi (prodi) kepada pengguna berdasarkan model collaborative filtering yang telah dilatih sebelumnya. Pertama, model digunakan untuk memprediksi skor (rating) untuk setiap pasangan pengguna-prodi yang tidak dipilih sebelumnya oleh pengguna. Kemudian, 10 prodi dengan skor tertinggi dipilih sebagai rekomendasi, dan ID prodi tersebut diubah kembali menjadi nama prodi. Selanjutnya, kode menampilkan prodi-prodi yang telah dipilih oleh pengguna, bersama dengan nama universitasnya, sebagai pembanding untuk rekomendasi yang diberikan. Terakhir, daftar 10 prodi yang direkomendasikan oleh model ditampilkan bersama dengan nama universitasnya untuk membantu pengguna dalam pengambilan keputusan. Proses ini memberikan pengguna gambaran yang lebih lengkap tentang pilihan prodi yang mungkin sesuai dengan preferensi mereka, serta memberikan alternatif yang relevan berdasarkan model collaborative filtering yang telah dilatih sebelumnya.
 
 **Tabel 3. Input untuk user dengan id `8705` dan jurusan 'Fisika'** :
+
 |index|id\_major|id\_user|rata\_rata\_nilai|type|major\_name|capacity|id\_university|university\_name|user|prodi|
-|-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|
+|-----:|------------:|-------------:|:-----------|-------------:|:--------------|:---------------|:--------------|:---------------------------------|:------------|:------------|
 |1549|3341046|8772|593\.125|science|PENDIDIKAN KIMIA|41\.0|334\.0|UNIVERSITAS PENDIDIKAN INDONESIA|661|661|
 
 **Tabel 4. Hasil rekomendasi untuk user dengan id `8705` dan jurusan 'Fisika'** :
+
 |index|id\_major|id\_user|rata\_rata\_nilai|type|major\_name|capacity|id\_university|university\_name|user|prodi|
-|-----:|-----:|-------------:|:-----------|----------:|:---------|:-----------|:--------------|:------------|:------------|:------------|
+|-----:|------------:|-------------:|:-----------|-------------:|:--------------|:-----------|:--------------|:---------------------------------|:------------|:------------|
 |152|3531015|891|677\.5|science|KEDOKTERAN|110\.0|353\.0|UNIVERSITAS SEBELAS MARET|135|135|
 |11990|1311016|58569|476\.5|science|FISIKA|48\.0|131\.0|UNIVERSITAS RIAU|1090|1090|
 |2391|1311024|12885|553\.125|science|KIMIA|48\.0|131\.0|UNIVERSITAS RIAU|772|772|
@@ -200,7 +202,7 @@ Selanjutnya, terdapat beberapa langkah untuk memberikan rekomendasi program stud
 |1484|3621134|8494|592\.625|science|BIOLOGI|32\.0|362\.0|UNIVERSITAS NEGERI YOGYAKARTA|647|647|
 |1822|3531062|10376|622\.5|science|ILMU DAN TEKNOLOGI PANGAN|50\.0|353\.0|UNIVERSITAS SEBELAS MARET|702|702|
 
-Dari gambar di atas terlihat, sistem menampilkan jurusan dengan skor yang sesuai dari input user. Sistem rekomendasi menampilkan 10 rekomendasi jurusan yang belum pernah diketahui user dan memiliki skor yang berada dibawah hingga diatas input user. Dengan demikian, user dapat melihat prodi apa yang sesuai dengan skor mereka berdasarkan rekomendasi skor dari minimum hingga maksimum. Harapanya 
+Dari gambar di atas terlihat, sistem menampilkan jurusan dengan skor yang sesuai dari input user. Sistem rekomendasi menampilkan 10 rekomendasi jurusan yang belum pernah diketahui user dan memiliki skor yang berada dibawah hingga diatas input user. Dengan demikian, user dapat melihat prodi apa yang sesuai dengan skor mereka berdasarkan rekomendasi skor dari minimum hingga maksimum. Harapanya
 ## Evaluation
 
 ### 1. Model **Content Based Filtering**
@@ -221,7 +223,7 @@ Cara kerja metrik ini adalah dengan membandingkan seberapa banyak prediksi model
 
 Berikut tampilan input user dan hasil rekomendasi berdasarkan input tersebut:
 - **Tabel 1. Data Jurusan dengan Id `3611476`** :
- 
+
 |index|id\_major|university\_name|major\_name|
 |------:|------:|-----------------:|:------------|
 |118|3611476|UNIVERSITAS GADJAH MADA|HIGIENE GIGI|
@@ -256,7 +258,9 @@ n = jumlah data
 
 Metrik Root Mean Squared Error (RMSE) bekerja dengan menghitung akar kuadrat dari rata-rata kuadrat selisih antara nilai prediksi dan nilai sebenarnya. Semakin kecil nilai RMSE, semakin baik model dalam memprediksi nilai, karena menunjukkan bahwa kesalahan prediksi model cenderung kecil. Ini membuat RMSE menjadi metrik yang berguna dalam mengevaluasi kualitas prediksi model regresi dan rekomendasi. Berikut hasil visualisasi metrix RMSE pada model sistem rekomendasi jurusan dengan teknik collaborative filltering.
 
-![Pict RMSE](https://github.com/Symphoen1x/Dicoding_expert2/blob/main/image.png)
+![Pict RMSE](https://raw.githubusercontent.com/Symphoen1x/Dicoding_expert2/main/image.png)
+
+Gambar 1.0 Hasil RMSE pada model Collaborative Filltering.
 
 Hasil dari gambar tersebut menunjukan model *Collaborative Filtering* telah bekerja cukup lumayan karena cenderung memiliki eror yang kurang stabil. Tidak terlihat ada kendala seperti *overfitting* karena range selisih eror training dan validation sekitar 0.5-0.6 saja. Namun, Nilai RMSE 0,18 dan 0,19 menunjukkan bahwa model masih memiliki kesalahan prediksi yang cukup besar. Hal ini berarti model masih dapat dioptimasi lebih lanjut untuk meningkatkan akurasinya.
 
