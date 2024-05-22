@@ -53,7 +53,7 @@ Dataset universities menyimpan data-data yang berkaitan dengan infromasi univers
 * id_university: Merupakan kode unik yang digunakan untuk mengidentifikasi secara unik sebuah universitas dalam dataset.
 * university_name: Merupakan nama dari sebuah universitas.
 
-## 2. Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 ### Dataset Universitas
 * Droping column
 
